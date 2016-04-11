@@ -12,6 +12,6 @@ Server-side frameworks: Express and Node
 
 Database: MongoDB
 
-Deployment platform: openshift.ida.liu.se
+Deployment platform: Heroku
 
 
