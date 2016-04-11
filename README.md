@@ -7,8 +7,11 @@ Then, the advertisment will be added to the site, and the other users can search
 The application will be built using MERN.io, which is a full stack tool implementing React, Express, Node and MongoDB.
 
 Client-side framework: React
+
 Server-side frameworks: Express and Node
+
 Database: MongoDB
+
 Deployment platform: openshift.ida.liu.se
 
 
