@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-      "example",
-      "heroku"
-    ],
+    "example",
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -29,5 +29,9 @@
   },
   "engines": {
     "node": "5.0.0"
+  },
+  "devDependencies": {
+    "gulp-babel": "^6.1.2",
+    "gulp-react": "^3.1.0"
   }
 }
