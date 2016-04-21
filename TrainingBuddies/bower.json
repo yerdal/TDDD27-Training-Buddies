@@ -1,0 +1,20 @@
+{
+  "name": "trainingbuddies",
+  "description": "project",
+  "main": "index.js",
+  "authors": [
+    "einarsandberg <einars92@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-css": "^3.3.6"
+  }
+}
