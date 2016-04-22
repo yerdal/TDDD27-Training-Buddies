@@ -11,7 +11,6 @@ module.exports = React.createClass({
 	},
 
 	addActivity:function(e){
-		console.log(e);
 		e.preventDefault();
 		actions.addActivity(this.state);
 	},

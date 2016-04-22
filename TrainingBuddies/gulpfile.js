@@ -15,7 +15,7 @@ gulp.task("bundle", function () {
         .pipe(source("main.js"))
         .pipe(gulp.dest("app/dist"))
 });
-gulp.task("bundle", function () {
+/*gulp.task("transform", function () {
     return browserify({
         entries: "./app/activityPage.jsx",
         debug: true
@@ -23,11 +23,11 @@ gulp.task("bundle", function () {
         .bundle()
         .pipe(source("activityPage.js"))
         .pipe(gulp.dest("app/dist"))
-});
+});*/
 
 gulp.task("copy", ["bundle"], function () {
     return gulp.src(["app/index.html","app/lib/bootstrap-css/css/bootstrap.min.css",
-        "app/style.css", "app/activity.html"])
+        "app/style.css"])
         .pipe(gulp.dest("app/dist"));
 });
 

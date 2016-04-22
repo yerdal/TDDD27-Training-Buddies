@@ -1,17 +1,35 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-var activityPage = require("./activityPage.jsx");
+var ActivityPage = require("./activityPage.jsx");
 
-var CommentBox = React.createClass({
-  render: function() {
-    return (
-      <div className="commentBox">
-        Hello, world! I am a CommentBox.
-      </div>
-    );
-  }
+
+var MainPage = React.createClass({
+    update: function(){
+
+    },
+
+    getInitialState: function(){
+    	return{clicked: false};
+    },
+
+    componentDidMount: function(){
+
+    },
+
+    render: function() {
+        return (
+     	    <div className="act">
+      		    <button className="btn" type="submit">Activities</button>
+          		<ActivityPage/>
+      		</div>
+    	);
+  	}
 });
+
 ReactDOM.render(
-  <CommentBox />,
-  document.getElementById('content')
+	<div className="act">
+  		<MainPage />
+  </div>,
+  document.getElementById('container')
 );
+ 

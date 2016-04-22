@@ -2,16 +2,27 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var ActivitiesList = require("./components/ActivitiesList.jsx");
 var ActivitiesStore = require("./stores/ActivitiesStore");
-var _activities = [];
+//var _activities = [];
 
-var getActivitiesCallback = function(activities){
-	_activities = activities;
-	console.log(_activities);
-	render();
-}
+module.exports = React.createClass({
 
-ActivitiesStore.onChange(getActivitiesCallback);
+	getInitialState: function(){
+		return{activities: []};
+	},
+	// listens for changes in store
+	componentDidMount: function(){
+		ActivitiesStore.onChange(this.getActivitiesCallback);
+	},
 
-function render(){
-    ReactDOM.render(<ActivitiesList activities={_activities} />, document.getElementById("container"));    
-}
+	getActivitiesCallback:function(theActivities){
+		
+		this.setState({activities: theActivities});
+	},
+
+	render:function(){
+		return(<ActivitiesList activities={this.state.activities}  />)
+	}
+})
+
+
+
