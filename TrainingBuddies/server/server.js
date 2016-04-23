@@ -13,5 +13,5 @@ app.use("/api", activityController);
 app.listen(7777,function(){
     console.log("Started listening on port", 7777);
 });
-
-mongoose.connect(process.env.MONGOLAB_URI || "mongodb://localhost/trainingbuddies");
+var mongodbUri = 'mongodb://user:pass@host:port/db';
+mongoose.connect(mongodbUri || "mongodb://localhost/trainingbuddies");
