@@ -3,10 +3,10 @@ var bodyparser = require('body-parser');
 var mongoose = require('mongoose');
 var http = require('http');
 var app = express();
- 
+ var path = require("path");
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/trainingbuddies');
 app.use(express.static(path.join(__dirname,"../app/dist")));
-app.use(bodyParser.json());
+app.use(bodyparser.json());
  
 var activityController = require("./controllers/activityController");
  app.use("/api", activityController);
