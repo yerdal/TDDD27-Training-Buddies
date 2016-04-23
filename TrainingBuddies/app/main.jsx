@@ -7,36 +7,46 @@ var MainPage = React.createClass({
 
     getInitialState: function(){
 
-    	return{showComponent:false};
+    	return{showActivityPage:false};
     },
 
     componentDidMount: function(){
-    	//this._onButtonClick();
     	
     },
     _onButtonClick:function() {
         this.setState({
-          showComponent: true,
+          showActivityPage: true,
         });
       },
 
     render: function() {
         return (
-     	    <div className="act">
-      		    <button className="btn" onClick={this._onButtonClick}>Activities</button>
-      		    {this.state.showComponent ?
-      		               <ActivityPage /> :
-      		               null
-      		            }
+     	    <div className="menu">
+	     	    <ul>
+	     	    	<li>
+	     	    		<a className="homeBtn">Home</a>
+	     	    	</li>
+	     	    	<li>
+	      		    	<a className="activitiesBtn" onClick={this._onButtonClick}>Activities</a>
+
+	      		    {this.state.showActivityPage ?
+	      		               <ActivityPage /> :
+	      		               null
+	      		            }
+	      		    </li>
+	      		    <li>
+	      		     <a className="aboutBtn">About</a>
+	      		     </li>
+	      		</ul>
       		</div>
     	);
   	}
 });
 
 ReactDOM.render(
-	<div className="act">
-  		<MainPage />
-  </div>,
-  document.getElementById('container')
+	
+  		<MainPage />,
+
+  document.getElementById('container-fluid')
 );
  
