@@ -1,6 +1,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 var ActivityPage = require("./activityPage.jsx");
+var FacebookLogin = require("./components/FacebookLogin.jsx");
 
 
 var MainPage = React.createClass({
@@ -20,16 +21,17 @@ var MainPage = React.createClass({
         return (
      	    <div className="act">
       		    <button className="btn" type="submit">Activities</button>
-          		<ActivityPage/>
+          		<ActivityPage />
       		</div>
+
+            <FacebookLogin />
     	);
   	}
 });
 
 ReactDOM.render(
-	<div className="act">
-  		<MainPage />
-  </div>,
+
+  <MainPage />,
   document.getElementById('container')
 );
  
