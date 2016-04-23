@@ -2,9 +2,10 @@
   "name": "trainingbuddies",
   "version": "1.0.0",
   "description": "project",
-  "main": "index.js",
+  "main": "TrainingBuddies/server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node TrainingBuddies/server/server.js"
   },
   "keywords": [
     "example",
@@ -33,5 +34,9 @@
   "devDependencies": {
     "gulp-babel": "^6.1.2",
     "gulp-react": "^3.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.ida.liu.se/einsa241/TDDD27-project.git"
   }
 }
