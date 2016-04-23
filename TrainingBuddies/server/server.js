@@ -14,4 +14,4 @@ app.listen(7777,function(){
     console.log("Started listening on port", 7777);
 });
 console.log("hej");
-mongoose.connect(process.env.MONGOLAB_URI || "mongodb://localhost/trainingbuddies");
+mongoose.connect("mongodb://heroku_f84lvj7p:cc9ono05fvtrkehhvonnfgc1q8@ds047642.mlab.com:47642/heroku_f84lvj7p" || "mongodb://localhost/trainingbuddies");
