@@ -5,33 +5,52 @@ var FacebookLogin = require("./components/FacebookLogin.jsx");
 
 
 var MainPage = React.createClass({
-    update: function(){
-
-    },
 
     getInitialState: function(){
-    	return{clicked: false};
+
+    	return{showActivityPage:false};
     },
 
     componentDidMount: function(){
-
+    	
     },
+    _onButtonClick:function() {
+        this.setState({
+          showActivityPage: true,
+        });
+      },
 
     render: function() {
         return (
-     	    <div className="act">
-      		    <button className="btn" type="submit">Activities</button>
-          		<ActivityPage />
+     	
+     	    <div className="menu">
+	     	    <ul>
+	     	    	<li>
+	     	    		<a className="homeBtn">Home</a>
+	     	    	</li>
+	     	    	<li>
+	      		    	<a className="activitiesBtn" onClick={this._onButtonClick}>Activities</a>
+
+	      		    {this.state.showActivityPage ?
+	      		               <ActivityPage /> :
+	      		               null
+	      		            }
+	      		    </li>
+	      		    <li>
+	      		     <a className="aboutBtn">About</a>
+	      		     </li>
+	      		</ul>
+             <FacebookLogin />
       		</div>
 
-            <FacebookLogin />
+           
     	);
   	}
 });
 
 ReactDOM.render(
-
-  <MainPage />,
-  document.getElementById('container')
+	
+  		<MainPage />,
+  document.getElementById('container-fluid')
 );
  
