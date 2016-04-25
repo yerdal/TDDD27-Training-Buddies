@@ -7,12 +7,13 @@ var app = express();
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/trainingbuddies');
 app.use(express.static(path.join(__dirname,"../app/dist")));
 app.use(bodyparser.json());
- 
 var activityController = require("./controllers/activityController");
  app.use("/api", activityController);
 var server = http.createServer(app);
 
 var port = process.env.PORT; //|| 3000;
+console.log(port);
+console.log(process.env.MONGOLAB_URI);
 app.listen(port, function() {
 console.log("Listening on " + port);
 });
