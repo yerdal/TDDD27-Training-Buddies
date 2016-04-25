@@ -12,7 +12,7 @@ var activityController = require("./controllers/activityController");
  app.use("/api", activityController);
 var server = http.createServer(app);
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT; //|| 3000;
 app.listen(port, function() {
 console.log("Listening on " + port);
 });
