@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var http = require('http');
 var app = express();
  var path = require("path");
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/trainingbuddies');
+mongoose.connect("mongodb://heroku_f84lvj7p:cc9ono05fvtrkehhvonnfgc1q8@ds047642.mlab.com:47642/heroku_f84lvj7p" || 'mongodb://localhost/trainingbuddies');
 app.use(express.static(path.join(__dirname,"../app/dist")));
 app.use(bodyparser.json());
 var activityController = require("./controllers/activityController");
