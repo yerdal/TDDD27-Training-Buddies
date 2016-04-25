@@ -5,7 +5,8 @@
   "main": "TrainingBuddies/server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node TrainingBuddies/server/server.js"
+    "start": "node TrainingBuddies/server/server.js",
+    "postinstall": "bower install && gulp build-libs && gulp build"
   },
   "keywords": [
     "example",
