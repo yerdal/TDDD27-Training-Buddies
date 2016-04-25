@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node TrainingBuddies/server/server.js",
-    "postinstall": "gulp"
+    "postinstall": "gulp --gulpfile TrainingBuddies/gulpfile.js"
   },
   "keywords": [
     "example",
