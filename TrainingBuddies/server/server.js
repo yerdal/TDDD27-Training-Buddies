@@ -12,8 +12,8 @@ var activityController = require("./controllers/activityController");
 var server = http.createServer(app);
 
 var port = process.env.PORT; //|| 3000;
-console.log(port);
-console.log(process.env.MONGOLAB_URI);
+console.log("PORT: " + port);
+console.log("URI" + process.env.MONGOLAB_URI)
 app.listen(port, function() {
 console.log("Listening on " + port);
 });
