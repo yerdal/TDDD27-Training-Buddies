@@ -22,7 +22,6 @@ var MainPage = React.createClass({
 
     render: function() {
         return (
-     	
      	    <div className="menu">
 	     	    <ul>
 	     	    	<li>

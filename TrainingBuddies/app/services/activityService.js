@@ -1,8 +1,7 @@
 var $ = require("jquery");
 var promise = require("es6-promise");
 
-/*var resourceUrl = "http://localhost:3000/api/activities";*/
-var resourceUrl = "https://lit-reef-24433.herokuapp.com:3000/api/activities";
+var resourceUrl = "/api/activities";
 
 module.exports = {
 	addActivity: function(activity){
