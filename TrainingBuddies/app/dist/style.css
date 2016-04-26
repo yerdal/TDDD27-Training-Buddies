@@ -4,9 +4,25 @@ ul {
 	padding: 0;
 }
 li {
+	float:left;
 	display: inline;
 }
 a {
 	font-size: 30px;
 	padding: 30px;
+}
+.active{
+	background-color: #5963FF;
+}
+
+#loginSquare{
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-50px; /* this is half the height of your div*/  
+  margin-left:-100px; /*this is half of width of your div*/
+  border: solid;
+}
+#social-login-button-facebook{
+	position: relative;
 }

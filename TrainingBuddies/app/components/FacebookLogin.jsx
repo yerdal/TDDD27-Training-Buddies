@@ -1,19 +1,35 @@
 var React = require("react");
 
-
-
 module.exports = React.createClass({
+  render:function(){
+    return(
+
+      <div id="loginSquare"> 
+              <h2>Please login with Facebook</h2>
+              <div id='social-login-button-facebook'>
+               <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+              </div>
+              <div id="status">
+              </div>
+            </div>
+     
+    )
+  }
+});
+
+
+/*module.exports = React.createClass({
   componentDidMount: function() {
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1092317474145198',
+      appId      : '1094059950637617',
       cookie     : true,  // enable cookies to allow the server to access
                         // the session
       xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.1' // use version 2.1
+      version    : 'v2.5' // use version 2.1
     });
     var s = '<div class="fb-login-button" ' +
-                'data-scope="public_profile,email" data-size="large" ' +
+                'scope="public_profile,email" data-size="xlarge" ' +
                 'data-show-faces="false" data-auto-logout-link="true" ' +
                 'onlogin="checkLoginState"></div>';
 
@@ -48,12 +64,17 @@ module.exports = React.createClass({
 
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
+
+
 testAPI: function() {
   console.log('Welcome!  Fetching your information.... ');
   FB.api('/me', function(response) {
+  console.log("USER INFO", response);
   console.log('Successful login for: ' + response.name);
+  console.log("Test Response: ", response.email);
   document.getElementById('status').innerHTML =
-    'Thanks for logging in, ' + response.name + '!';
+    'Thanks for logging in, ' + response.name + '!'
+    + '<img src="http://graph.facebook.com/' + response.id + '/picture?type=normal"/>';
   });
 },
 
@@ -94,8 +115,14 @@ handleClick: function() {
 },
 render:function(){
     return(
-          <div id='social-login-button-facebook'>
-          </div>
+          <div id="loginSquare"> 
+              <h2>Please login with Facebook</h2>
+              <div id='social-login-button-facebook'>
+              </div>
+              <div id="status">
+              </div>
+            </div>
+          
     )
   } 
-});
+});*/
