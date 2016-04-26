@@ -2,17 +2,15 @@ var React = require("react");
 
 module.exports = React.createClass({
 
+	search:function(){
+		var query = this.refs.searchInput.value;
+		this.props.search(query);
+	},
+
 	render:function(){
 		return (
-			<form className ="form">
-				<div className="form-group">
-					<label className="control-label" htmlFor="name">Search activity:</label>
-					<input type="text" className="form-control" id="name" name="name" 
+					<input type="text" ref="searchInput" value={this.props.query} onChange={this.search}
 					 placeholder="Find activity" />
-				</div>
-			</form>
-
-
 			)
 	}
 })
