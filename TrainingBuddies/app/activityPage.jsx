@@ -2,7 +2,7 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var ActivitiesList = require("./components/ActivitiesList.jsx");
 var ActivitiesStore = require("./stores/activitiesStore");
-//var _activities = [];
+var SearchActivity = require("./components/SearchActivity.jsx");
 
 module.exports = React.createClass({
 
@@ -20,7 +20,12 @@ module.exports = React.createClass({
 	},
 
 	render:function(){
-		return(<div className="activitieslist"> <ActivitiesList activities={this.state.activities}  /> </div>)
+		return(
+			<div>
+				<div className="search"> <SearchActivity /> </div>
+				<div className="activitieslist"> <ActivitiesList activities={this.state.activities}  /> </div>
+			</div>
+			)
 	}
 })
 

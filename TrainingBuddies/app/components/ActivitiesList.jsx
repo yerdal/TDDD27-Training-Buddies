@@ -9,7 +9,9 @@ module.exports = React.createClass({
                 <div className="col-md-6">
                     <AddActivity />
                 </div>
-                <div className="col-md-6">
+                <div>
+                  <div className="col-md-6"> Activities </div>
+                  <div className="col-md-6">
                     {
                         this.props.activities.map(function(s,index){
                             return(
@@ -17,7 +19,8 @@ module.exports = React.createClass({
                             )         
                         })
                     }
-                </div>
+                  </div>
+                  </div>
            </div>
        )
    } 

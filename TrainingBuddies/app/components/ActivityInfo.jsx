@@ -8,13 +8,16 @@ module.exports = React.createClass({
     },
     render:function(){
         return(
-            <div className="panel panel-default">
-                <div className="panel-heading">
-                    {this.props.info.name}
-                    <span className="pull-right text-uppercase delete-button" onClick={this.deleteActivity}>&times;</span>
+                <div className="panel panel-default">
+                    
+                    <div className="panel-heading">
+                        {this.props.info.name} i {this.props.info.location} 
+                        <span className="pull-right text-uppercase delete-button" onClick={this.deleteActivity}>&times;</span>
+                    </div>
+
+                    <div className="panel-body">{this.props.info.description}</div>
+
                 </div>
-                <div className="panel-body">{this.props.info.description}</div>
-            </div>
         )
     }
 })

@@ -38,17 +38,18 @@ var MainPage = React.createClass({
     	     	    	</li>
     	     	    	<li>
     	      		    	<a className="activitiesBtn" onClick={this._onButtonClick}>Activities</a>
-
     	      		    </li>
     	      		    <li>
     	      		     <a className="aboutBtn">About</a>
     	      		     </li>
     	      		</ul>
                 </div>
-                {this.state.showActivityPage ?
-                           <ActivityPage /> :
-                           null
-                        }
+                <div className="activitypage">
+                  {this.state.showActivityPage ?
+                             <ActivityPage /> :
+                             null
+                          }
+                </div>
                 <div className fbBox>
                     {this.state.showActivityPage ?
                                 null :
