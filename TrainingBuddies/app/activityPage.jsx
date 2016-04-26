@@ -1,7 +1,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 var ActivitiesList = require("./components/ActivitiesList.jsx");
-var ActivitiesStore = require("./stores/ActivitiesStore");
+var ActivitiesStore = require("./stores/activitiesStore");
 //var _activities = [];
 
 module.exports = React.createClass({

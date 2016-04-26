@@ -1,19 +1,20 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var mongoose = require("mongoose");
-var path = require("path");
-var passport = require("passport");
-var session = require("express-session");
-
-var activityController = require("./controllers/activityController");
-
-
+var express = require('express');
+var bodyparser = require('body-parser');
+var mongoose = require('mongoose');
+var http = require('http');
 var app = express();
+ var path = require("path");
+console.log(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/trainingbuddies');
 app.use(express.static(path.join(__dirname,"../app/dist")));
-app.use(bodyParser.json());
-app.use("/api", activityController);
-app.listen(7777,function(){
-    console.log("Started listening on port", 7777);
-});
+app.use(bodyparser.json());
+var activityController = require("./controllers/activityController");
+ app.use("/api", activityController);
+var server = http.createServer(app);
 
-mongoose.connect("mongodb://localhost/trainingbuddies");
+var port = process.env.PORT || 3000;
+console.log("PORT: " + port);
+console.log("URI" + process.env.MONGOLAB_URI)
+app.listen(port, function() {
+console.log("Listening on " + port);
+});
