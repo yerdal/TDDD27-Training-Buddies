@@ -2,7 +2,7 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var ActivityPage = require("./activityPage.jsx");
 var FacebookLogin = require("./components/FacebookLogin.jsx");
-var Profile = require("./components/Profile.jsx");
+//var Profile = require("./components/Profile.jsx");
 
 
 var MainPage = React.createClass({
@@ -30,26 +30,32 @@ var MainPage = React.createClass({
 
     render: function() {
         return (
+            <div className ="page">
+         	    <div className="menu">
+    	     	    <ul>
+    	     	    	<li>
+    	     	    		<a className="homeBtn">Home</a>
+    	     	    	</li>
+    	     	    	<li>
+    	      		    	<a className="activitiesBtn" onClick={this._onButtonClick}>Activities</a>
 
-     	    <div className="menu">
-	     	    <ul>
-	     	    	<li>
-	     	    		<a className="homeBtn">Home</a>
-	     	    	</li>
-	     	    	<li>
-	      		    	<a className="activitiesBtn" onClick={this._onButtonClick}>Activities</a>
-
-	      		    {this.state.showActivityPage ?
-	      		               <ActivityPage /> :
-	      		               null
-	      		            }
-	      		    </li>
-	      		    <li>
-	      		     <a className="aboutBtn">About</a>
-	      		     </li>
-	      		</ul>
-             <FacebookLogin />
-      		</div>
+    	      		    </li>
+    	      		    <li>
+    	      		     <a className="aboutBtn">About</a>
+    	      		     </li>
+    	      		</ul>
+                </div>
+                {this.state.showActivityPage ?
+                           <ActivityPage /> :
+                           null
+                        }
+                <div className fbBox>
+                    {this.state.showActivityPage ?
+                                null :
+                              <FacebookLogin />
+                            }
+          		</div>
+            </div>
 
     	);
   	}

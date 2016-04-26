@@ -20,7 +20,7 @@ module.exports = React.createClass({
 	},
 
 	render:function(){
-		return(<ActivitiesList activities={this.state.activities}  />)
+		return(<div className="activitieslist"> <ActivitiesList activities={this.state.activities}  /> </div>)
 	}
 })
 

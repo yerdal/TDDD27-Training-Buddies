@@ -11,6 +11,9 @@ a {
 	font-size: 30px;
 	padding: 30px;
 }
+.activitieslist {
+	padding-top: 50px;
+}
 .active{
 	background-color: #5963FF;
 }
