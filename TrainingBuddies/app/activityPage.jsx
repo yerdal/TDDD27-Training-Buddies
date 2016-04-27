@@ -2,8 +2,7 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var ActivitiesList = require("./components/ActivitiesList.jsx");
 var ActivitiesStore = require("./stores/activitiesStore");
-//var _activities = [];
-
+var InstantSearchBox = require("./components/InstantSearchBox.jsx");
 module.exports = React.createClass({
 
 	getInitialState: function(){
@@ -21,7 +20,13 @@ module.exports = React.createClass({
 
 	render:function(){
 		console.log(this.state.activities);
-		return(<ActivitiesList activities={this.state.activities}  />)
+
+
+		return(
+			<div>
+				<InstantSearchBox activities={this.state.activities} />
+			</div>
+			)
 	}
 })
 

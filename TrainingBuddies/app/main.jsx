@@ -24,25 +24,33 @@ var MainPage = React.createClass({
     render: function() {
         return (
 
-     	    <div className="menu">
-	     	    <ul>
-	     	    	<li>
-	     	    		<a className="homeBtn">Home</a>
-	     	    	</li>
-	     	    	<li>
-	      		    	<a className="activitiesBtn" onClick={this._onButtonClick}>Activities</a>
-
-	      		    {this.state.showActivityPage ?
-	      		               <ActivityPage /> :
-	      		               null
-	      		            }
-	      		    </li>
-	      		    <li>
-	      		     <a className="aboutBtn">About</a>
-	      		     </li>
-	      		</ul>
-             <a href="/auth/facebook">Login with Facebook</a>
-      		</div>
+            <div className ="page">
+         	    <div className="menu">
+    	     	    <ul>
+    	     	    	<li>
+    	     	    		<a className="homeBtn">Home</a>
+    	     	    	</li>
+    	     	    	<li>
+    	      		    	<a className="activitiesBtn" onClick={this._onButtonClick}>Activities</a>
+    	      		    </li>
+    	      		    <li>
+    	      		     <a className="aboutBtn">About</a>
+    	      		     </li>
+    	      		</ul>
+                </div>
+                <div className="activitypage">
+                  {this.state.showActivityPage ?
+                             <ActivityPage /> :
+                             null
+                          }
+                </div>
+                <div className fbBox>
+                    {this.state.showActivityPage ?
+                                null :
+                              <FacebookLogin />
+                            }
+          		</div>
+            </div>
 
 
     	);

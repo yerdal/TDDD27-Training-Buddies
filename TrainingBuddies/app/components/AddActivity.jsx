@@ -6,7 +6,9 @@ module.exports = React.createClass({
 	getInitialState:function(){
 		return {
 			name:"",
+			location:"",
 			description:""
+
 		}
 	},
 
@@ -31,12 +33,17 @@ module.exports = React.createClass({
 					<input type="text" className="form-control" id="name" name="name" 
 					value={this.state.name} onChange={this.handleInputChange} placeholder="Activity" />
 				</div>
-
+				<div className="form-group">
+					<label className="control-label" htmlFor="location">Location</label>
+					<input type="text" className="form-control" id="location" name="location"
+					value={this.state.location} onChange={this.handleInputChange} placeholder="Location" />
+				</div> 
 				<div className="form-group">
 					<label className="control-label" htmlFor="description">Description:</label>
 					<input type="text" className="form-control" id="description" name="description"
 					value={this.state.address} onChange={this.handleInputChange} placeholder="Description" />
-				</div> 
+				</div>
+
 
 				<div className="form-group">
 					<button className="btn" type="submit">Add Activity</button>
