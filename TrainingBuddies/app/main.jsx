@@ -2,7 +2,7 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var ActivityPage = require("./activityPage.jsx");
 var FacebookLogin = require("./components/FacebookLogin.jsx");
-var Profile = require("./components/Profile.jsx");
+var Router = require("react-router");
 
 
 var MainPage = React.createClass({
@@ -20,13 +20,6 @@ var MainPage = React.createClass({
           showActivityPage: true,
         });
       },
-    _onProfileClick:function() {
-      this.setState({
-        showProfilePage: true,
-        showActivityPage: false,
-      });
-      //console.log("ProfilePageStatus", this.state.showProfilePage);
-    },
 
     render: function() {
         return (
@@ -48,8 +41,9 @@ var MainPage = React.createClass({
 	      		     <a className="aboutBtn">About</a>
 	      		     </li>
 	      		</ul>
-             <FacebookLogin />
+             <a href="/auth/facebook">Login with Facebook</a>
       		</div>
+
 
     	);
   	}

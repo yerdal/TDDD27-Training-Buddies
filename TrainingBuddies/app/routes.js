@@ -1,4 +1,4 @@
-// app/routes.js
+ // app/routes.js
 
 module.exports = function(app, passport) {
 
@@ -14,7 +14,7 @@ module.exports = function(app, passport) {
 
     // route for showing the profile page
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
+        res.render('index.html', {
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -37,7 +37,6 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
-
 };
 
 // route middleware to make sure a user is logged in
