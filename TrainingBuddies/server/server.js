@@ -5,9 +5,9 @@ var http = require('http');
 var app = express();
 var path = require("path");
 var passport = require("passport");
+var pass = require('../config/passport.js')(passport);
 var session = require("express-session");
-//var reactViews = require('express-react-views');
-//var flash = require("connect-flash");
+var flash = require("connect-flash");
 
 console.log(process.env.MONGODB_URI);
 
@@ -24,12 +24,16 @@ var port = process.env.PORT || 3000;
 console.log("PORT: " + port);
 console.log("URI" + process.env.MONGOLAB_URI)
 
+
+app.set('views', "./app/");
 app.set('view engine','jsx');
+app.engine('jsx', require('express-react-views').createEngine());
 //app.engine('jsx', reactViews.createEngine());
 
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 app.use(passport.initialize());
-app.use(passport.session());
-//app.use(flash());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 /*Routes*/
 require('../app/routes.js')(app, passport); 
