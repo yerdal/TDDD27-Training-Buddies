@@ -4,8 +4,8 @@ var ActivitiesList = require("./ActivitiesList.jsx");
 module.exports = React.createClass({
 
 	getInitialState:function(){
+		console.log("hej");
 		console.log(this.props.activities);
-		var data = this.props.activities;
 		return {
 			query:"",
 			filteredData:this.props.activities
@@ -13,7 +13,9 @@ module.exports = React.createClass({
 	},
 
 	search:function(queryText){
+		console.log("tju");
 		var queryRes = [];
+
 		this.props.activities.forEach(function(activity){
 			if (activity.name.toLowerCase().indexOf(queryText) != -1){
 				queryRes.push(activity);
@@ -27,10 +29,6 @@ module.exports = React.createClass({
 
 	render:function(){
 		console.log(this.state.filteredData);
-		console.log(this.props.activities);
-
-		/*if (this.state.filteredData.length == 0)
-		{*/
 			return(
 			<div>
 				<h2> Search activity </h2>

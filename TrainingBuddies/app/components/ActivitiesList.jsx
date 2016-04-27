@@ -4,7 +4,6 @@ var AddActivity = require("./AddActivity.jsx");
 
 module.exports = React.createClass({
    render:function(){
-    console.log(this.props.activities);
        return(
            <div className="row">
                 <div className="col-md-6">
