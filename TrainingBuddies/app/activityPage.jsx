@@ -19,6 +19,7 @@ module.exports = React.createClass({
 	},
 
 	render:function(){
+
 		return(
 			<div>
 				<InstantSearchBox activities={this.state.activities} />
