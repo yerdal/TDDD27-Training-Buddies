@@ -11,8 +11,9 @@ module.exports = React.createClass({
                 <div className="panel panel-default">
                     
                     <div className="panel-heading">
-                        {this.props.info.name} i {this.props.info.location} 
-                        <span className="pull-right text-uppercase delete-button" onClick={this.deleteActivity}>&times;</span>
+                    <span className="pull-right text-uppercase delete-button" onClick={this.deleteActivity}>&times;</span>
+                     <h4>{this.props.info.name}</h4> <h5>{this.props.info.location}</h5>
+                        
                     </div>
 
                     <div className="panel-body">{this.props.info.description}</div>

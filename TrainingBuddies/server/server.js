@@ -10,10 +10,11 @@ var session = require("express-session");
 //var flash = require("connect-flash");
 
 console.log(process.env.MONGODB_URI);
+var connectString = "mongodb://localhost:27017/trainingbuddies";
 
 //require("../config/passport")(passport);
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/trainingbuddies');
+mongoose.connect(process.env.MONGODB_URI || connectString);
 app.use(express.static(path.join(__dirname,"../app/dist")));
 app.use(bodyparser.json());
 var activityController = require("./controllers/activityController");
