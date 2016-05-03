@@ -17,7 +17,7 @@ module.exports = React.createClass({
                     </div>
 
                     <div className="panel-body">{this.props.info.description}</div>
-
+                    <div id="levelFooter" className="panel-footer">{this.props.info.level}</div>
                 </div>
         )
     }
