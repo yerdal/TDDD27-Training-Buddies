@@ -26,7 +26,7 @@ console.log("PORT: " + port);
 console.log("URI" + process.env.MONGOLAB_URI)
 
 
-app.set('views', "./app/dist");
+app.set('views', path.join(__dirname,"../app/dist"));
 app.set('view engine','ejs');
 app.engine('jsx', require('express-react-views').createEngine());
 
