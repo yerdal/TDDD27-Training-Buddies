@@ -26,12 +26,7 @@ console.log("PORT: " + port);
 console.log("URI" + process.env.MONGOLAB_URI)
 
 
-//app.set('views', "./app/");
-//app.set('view engine','ejs');
-//app.engine('jsx', require('express-react-views').createEngine());
-//app.engine('jsx', reactViews.createEngine());
-
-app.set('views', "./app/");
+app.set('views', "./app/dist");
 app.set('view engine','ejs');
 app.engine('jsx', require('express-react-views').createEngine());
 

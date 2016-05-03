@@ -3,7 +3,7 @@
     // route for home page
     app.get('/', function(req, res) {
        
-        res.render('./dist/index.ejs');
+        res.render('index.ejs');
     });
 
     // route for login form
@@ -15,7 +15,7 @@
     app.get('/profile', isLoggedIn, function(req, res) {
         console.log(req.user);
 
-        res.render('./dist/profile.ejs', {
+        res.render('profile.ejs', {
             //markup: markup,
             user : req.user // get the user out of session and pass to template
         });
