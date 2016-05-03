@@ -1,9 +1,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-var ActivityPage = require("./activityPage.jsx");
 var FacebookLogin = require("./components/FacebookLogin.jsx");
 var Router = require("react-router");
-
 
 var MainPage = React.createClass({
 
@@ -25,34 +23,13 @@ var MainPage = React.createClass({
         return (
 
             <div className ="page">
-         	    <div className="menu">
-    	     	    <ul>
-    	     	    	<li>
-    	     	    		<a className="homeBtn">Home</a>
-    	     	    	</li>
-    	     	    	<li>
-    	      		    	<a className="activitiesBtn" onClick={this._onButtonClick}>Activities</a>
-    	      		    </li>
-    	      		    <li>
-    	      		     <a className="aboutBtn">About</a>
-    	      		     </li>
-    	      		</ul>
-                </div>
-                <div className="activitypage">
-                  {this.state.showActivityPage ?
-                             <ActivityPage /> :
-                             null
-                          }
-                </div>
+
                 <div className fbBox>
-                    {this.state.showActivityPage ?
-                                null :
-                              <FacebookLogin />
-                            }
+                    {
+                        <FacebookLogin />
+                    }
           		</div>
             </div>
-
-
     	);
   	}
 });
@@ -63,3 +40,4 @@ ReactDOM.render(
   document.getElementById('container-fluid')
 );
  
+ module.exports = MainPage;

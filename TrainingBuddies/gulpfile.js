@@ -4,29 +4,26 @@ var reactify = require("reactify");
 var source = require("vinyl-source-stream");
 var react = require("gulp-react");
 var babel = require("gulp-babel");
- 
+var ejs = require("gulp-ejs");
 
 gulp.task("bundle", function () {
+
     return browserify({
-        entries: "./app/main.jsx",
+        entries: "./app/loginPage.jsx",
         debug: true
     }).transform(reactify)
         .bundle()
-        .pipe(source("main.js"))
+        .pipe(source("loginPage.js"))
         .pipe(gulp.dest("app/dist"))
 });
-/*gulp.task("transform", function () {
-    return browserify({
-        entries: "./app/activityPage.jsx",
-        debug: true
-    }).transform(reactify)
-        .bundle()
-        .pipe(source("activityPage.js"))
-        .pipe(gulp.dest("app/dist"))
-});*/
-
+/*gulp.src("./app/*.ejs")
+    .pipe(ejs({
+        msg: "Hello Gulp!"
+    }))
+    .pipe(gulp.dest("app/dist"));
+*/
 gulp.task("copy", ["bundle"], function () {
-    return gulp.src(["app/index.html","app/lib/bootstrap-css/css/bootstrap.min.css",
+    return gulp.src(["app/index.ejs", "app/profile.ejs","app/lib/bootstrap-css/css/bootstrap.min.css",
         "app/style.css"])
         .pipe(gulp.dest("app/dist"));
 });

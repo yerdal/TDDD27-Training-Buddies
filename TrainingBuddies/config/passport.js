@@ -1,11 +1,10 @@
 // load all the things we need
 console.log("hej");
-var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 // load up the user model
 var User       = require('../server/data/user');
-
+//console.log(User);
 // load the auth variables
 var configAuth = require('./auth');
 module.exports = function(passport) {
@@ -33,7 +32,9 @@ module.exports = function(passport) {
         // pull in our app id and secret from our auth.js file
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL
+        callbackURL     : configAuth.facebookAuth.callbackURL,
+        profileFields   : ['id', 'name', 'email']
+        //passReqToCallback : true
 
     },
 
@@ -49,15 +50,22 @@ module.exports = function(passport) {
                 // if there is an error, stop everything and return that
                 // ie an error connecting to the database
                 if (err)
+                {
+                    console.log("HAAA");
                     return done(err);
+                }
 
                 // if the user is found, then log them in
                 if (user) {
+                    /*console.log(profile.emails[0].value);
+                    console.log(profile.name.givenName + " " + profile.name.familyName);
+                    console.log(user);*/
+                    console.log()
                     return done(null, user); // user found, return that user
                 } else {
+                    
                     // if there is no user found with that facebook id, create them
                     var newUser            = new User();
-
                     // set all of the facebook information in our user model
                     newUser.facebook.id    = profile.id; // set the users facebook id                   
                     newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
