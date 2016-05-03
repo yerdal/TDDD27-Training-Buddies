@@ -10,7 +10,7 @@ module.exports = React.createClass({
 	render:function(){
 		return (
 					<input type="text" ref="searchInput" value={this.props.query} onChange={this.search}
-					 placeholder="Find activity" />
+					 placeholder="Search by activity or location" />
 			)
 	}
 })
