@@ -1,10 +1,9 @@
- // app/routes.js
-
-module.exports = function(app, passport) {
+ module.exports = function(app, passport) {
 
     // route for home page
     app.get('/', function(req, res) {
-        res.render('index.html'); // load the index.ejs file
+       
+        res.render('index.ejs');
     });
 
     // route for login form
@@ -14,7 +13,10 @@ module.exports = function(app, passport) {
 
     // route for showing the profile page
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('activityPage', {
+        console.log(req.user);
+
+        res.render('profile.ejs', {
+            //markup: markup,
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -23,6 +25,15 @@ module.exports = function(app, passport) {
     // FACEBOOK ROUTES =====================
     // =====================================
     // route for facebook authentication and login
+    app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
+
+    // handle the callback after facebook has authorized the user
+    app.get('/connect/facebook/callback',
+        passport.authorize('facebook', {
+            successRedirect : '/profile',
+            failureRedirect : '/'
+        }));
+    
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
     // handle the callback after facebook has authenticated the user
@@ -31,6 +42,14 @@ module.exports = function(app, passport) {
             successRedirect : '/profile',
             failureRedirect : '/'
         }));
+
+   /* app.get('/unlink/facebook', isLoggedIn, function(req, res) {
+            var user            = req.user;
+            user.facebook.token = undefined;
+            user.save(function(err) {
+                res.redirect('/profile');
+            });
+        });*/
 
     // route for logging out
     app.get('/logout', function(req, res) {
@@ -44,7 +63,12 @@ function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
+    {
+        console.log("hejssss");
         return next();
+
+    }
+
 
     // if they aren't redirect them to the home page
     res.redirect('/');

@@ -35,7 +35,6 @@ module.exports = React.createClass({
 	},
 
 	render:function(){
-		console.log("Render" ,this.state.filteredData);
 			return(
 			<div>
 				<h2> Search activity </h2>
