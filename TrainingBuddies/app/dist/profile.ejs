@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Training Buddies</title>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="container-fluid">
+        
+    
+    <div class="col-sm-6">
+               
+
+                   <!-- check if the user has this token (is the user authenticated with this social account) -->
+                   <% if (user.facebook.token) { %>
+                       <div id="usertoken" data-value=<%= user.facebook.token %> style="display:none;">...</div>
+                       <div id="name" data-value=<%= user.facebook.name %> style="display:none;">...</div>
+                       <script src="loginPage.js"></script>
+                  
+                   <% } else { %>
+                       <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
+                   <% } %>
+
+              
+           </div>
+           </div>
+
+    
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+        
+</body>
+
+
+</html>

@@ -1,20 +1,4 @@
- 
-
- // app/routes.js
- require("node-jsx").install({
-   harmony: true,
-   extension: ".jsx"
- });
- var React = require("react");
- var express = require("express");
- var ReactDOMServer = require("react-dom/server")
-
- //var ReactStartPage = React.createFactory(require("./main"))
-
- var HTMLDocument = React.createFactory(require("react-html-document"));
-
-
-module.exports = function(app, passport) {
+ module.exports = function(app, passport) {
 
     // route for home page
     app.get('/', function(req, res) {
