@@ -22,7 +22,7 @@ module.exports = React.createClass({
 
 		return(
 			<div>
-				<InstantSearchBox activities={this.state.activities} />
+				<InstantSearchBox activities={this.state.activities} user={this.props.user} />
 			</div>
 			)
 	}

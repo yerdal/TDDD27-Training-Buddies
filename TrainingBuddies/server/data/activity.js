@@ -4,7 +4,8 @@ var activitySchema = mongoose.Schema({
 	name: String,
 	location: String,
 	description: String,
-	level: String
+	level: String,
+	owner: String
 
 });
 

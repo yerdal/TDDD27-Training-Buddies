@@ -10,7 +10,6 @@ var LoginPage = React.createClass({
         //console.log(this.props.user);
         var val = document.getElementById('usertoken').getAttribute('data-value');
         var name = document.getElementById('name').getAttribute('data-value');
-        console.log(name);
         return{showActivityPage:false, user:name};
     },
 
@@ -47,7 +46,7 @@ var LoginPage = React.createClass({
                     </div>
                     <div className="activitypage">
                       {this.state.showActivityPage ?
-                                 <ActivityPage /> :
+                                 <ActivityPage user={this.state.user} /> :
                                  null
                               }
                     </div>

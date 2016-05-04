@@ -8,7 +8,7 @@ module.exports = React.createClass({
        return(
            <div className="row">
                 <div className="col-md-6">
-                    <AddActivity />
+                    <AddActivity user={this.props.user}/>
                 </div>
                 <div>
                   <div className="col-md-6"> Activities </div>

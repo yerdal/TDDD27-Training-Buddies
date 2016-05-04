@@ -4,8 +4,6 @@ var ActivitiesList = require("./ActivitiesList.jsx");
 module.exports = React.createClass({
 
 	getInitialState:function(){
-		console.log("hej");
-		console.log(this.props.activities);
 		return {
 			query:"",
 			filteredData:this.props.activities
@@ -39,7 +37,7 @@ module.exports = React.createClass({
 			<div>
 				<h2> Search activity </h2>
 				<SearchActivity query={this.state.query} search={this.search} />
-				<ActivitiesList activities={this.state.filteredData} />
+				<ActivitiesList activities={this.state.filteredData} user={this.props.user} />
 			</div>
 			)
 
