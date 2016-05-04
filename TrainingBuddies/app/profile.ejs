@@ -19,6 +19,8 @@
                    <% if (user.facebook.token) { %>
                        <div id="usertoken" data-value=<%= user.facebook.token %> style="display:none;">...</div>
                        <div id="name" data-value=<%= user.facebook.name %> style="display:none;">...</div>
+                       <div id="lastname" data-value=<%= user.facebook.lastname %> style="display:none;">...</div>
+                       <div id="email" data-value=<%= user.facebook.email %> style="display:none;">...</div>
                        <script src="loginPage.js"></script>
                   
                    <% } else { %>

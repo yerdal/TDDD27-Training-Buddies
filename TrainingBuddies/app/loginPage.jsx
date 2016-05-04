@@ -1,6 +1,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 var ActivityPage = require("./activityPage.jsx");
+var ProfilePage = require("./components/profilePage.jsx");
 //var FacebookLogin = require("./components/FacebookLogin.jsx");
 var Router = require("react-router");
 
@@ -10,8 +11,10 @@ var LoginPage = React.createClass({
         //console.log(this.props.user);
         var val = document.getElementById('usertoken').getAttribute('data-value');
         var name = document.getElementById('name').getAttribute('data-value');
-        console.log(name);
-        return{showActivityPage:false, user:name};
+        var email = document.getElementById('email').getAttribute('data-value');
+        var lastname = document.getElementById('lastname').getAttribute('data-value');
+
+        return{showActivityPage:false, user:[val, name, lastname, email], showProfilePage:true};
     },
 
     componentDidMount: function(){
@@ -21,6 +24,7 @@ var LoginPage = React.createClass({
     _onButtonClick:function() {
         this.setState({
           showActivityPage: true,
+          showProfilePage: false,
         });
       },
 
@@ -28,7 +32,6 @@ var LoginPage = React.createClass({
         return (
             
                 <div className ="page">
-                    <p>Welcome {this.state.user}</p>
                     <div className="menu">
                         <ul>
                             <li>
@@ -51,6 +54,13 @@ var LoginPage = React.createClass({
                                  null
                               }
                     </div>
+                    <div className="profilepage">
+                    {this.state.showProfilePage ? 
+                               <ProfilePage user={this.state.user} /> :
+                               null
+                              }
+
+                    </div>          
 
                 </div>
           
