@@ -8,7 +8,8 @@ module.exports = React.createClass({
 			name:"",
 			location:"",
 			description:"",
-			level: ""
+			level:"",
+			owner:this.props.user
 
 		}
 	},

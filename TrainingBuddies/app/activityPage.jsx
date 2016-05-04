@@ -10,19 +10,20 @@ module.exports = React.createClass({
 	},
 	// listens for changes in store
 	componentDidMount: function(){
+
 		ActivitiesStore.onChange(this.getActivitiesCallback);
 	},
 
 	getActivitiesCallback:function(theActivities){
-		
 		this.setState({activities: theActivities});
 	},
 
 	render:function(){
-
+//		console.log(this.state.activities);
+		
 		return(
 			<div>
-				<InstantSearchBox activities={this.state.activities} />
+				<InstantSearchBox activities={this.state.activities} user={this.props.user} />
 			</div>
 			)
 	}

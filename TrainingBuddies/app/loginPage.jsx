@@ -15,6 +15,7 @@ var LoginPage = React.createClass({
         var lastname = document.getElementById('lastname').getAttribute('data-value');
 
         return{showActivityPage:false, user:[val, name, lastname, email], showProfilePage:true};
+
     },
 
     componentDidMount: function(){
@@ -50,7 +51,7 @@ var LoginPage = React.createClass({
                     </div>
                     <div className="activitypage">
                       {this.state.showActivityPage ?
-                                 <ActivityPage /> :
+                                 <ActivityPage user={this.state.user} /> :
                                  null
                               }
                     </div>
