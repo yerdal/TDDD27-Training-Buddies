@@ -14,12 +14,11 @@ module.exports = React.createClass({
                     <span className="pull-right text-uppercase delete-button" onClick={this.deleteActivity}>&times;</span>
                      <h4>{this.props.info.name}</h4> 
                      <h5>{this.props.info.location}</h5>
-                     <h6>{this.props.info.level}</h6>
-                        
+                                             
                     </div>
 
                     <div className="panel-body">{this.props.info.description}</div>
-
+                    <div id="levelFooter" className="panel-footer">{this.props.info.level}</div>
                 </div>
         )
     }

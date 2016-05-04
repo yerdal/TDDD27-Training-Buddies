@@ -25,9 +25,13 @@ module.exports = React.createClass({
 		state[name] = e.target.value;
 		this.setState(state);
 	},
+	selectLevel:function(e){
+		console.log("selectLevel",e.target.value);
+		this.setState({level: e.target.value});
+	},
 
 	render:function(){
-		console.log("state.level", this.state.level);
+
 		return (
 			<form className="form" onSubmit={this.addActivity}>
 				<div className="form-group">
@@ -45,12 +49,13 @@ module.exports = React.createClass({
 					<input type="text" className="form-control" id="description" name="description"
 					value={this.state.address} onChange={this.handleInputChange} placeholder="Description" />
 				</div>
-				<div className="form-group">
+				<div className="form-group" htmlFor="level">
 					<label className="control-label" htmlFor="level"> Choose level:</label>
-					<select className="selectpicker">
-				  		<option value={this.state.level}>Beginner</option>
-				  		<option>Intermediate</option>
-				  		<option>Advanced</option>
+
+					<select value={this.state.level} onChange={this.selectLevel}>
+				  		<option value="Beginner">Beginner</option>
+				  		<option value="Intermediate">Intermediate</option>
+				  		<option value="Advanced">Advanced</option>
 					</select>
 
 				</div>

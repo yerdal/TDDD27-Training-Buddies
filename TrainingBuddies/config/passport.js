@@ -1,5 +1,6 @@
 // load all the things we need
 console.log("hej");
+
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 // load up the user model
