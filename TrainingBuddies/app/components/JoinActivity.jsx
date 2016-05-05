@@ -3,22 +3,12 @@ var React = require("react");
 
 module.exports = React.createClass({
     
-    componentDidMount:function(){
-        
-    },
-    /*joinActivity: function(e){
-        e.preventDefault();
-        console.log(this.props.info);
-        this.props.info.participants=this.props.info.user
-        actions.joinActivity(this.props.info);
-    },*/
     render:function(){
-    
+
         return(
-               <div>
-                
+
+                <div className="joinBtn">
                     <button className="btn" type="submit">Join activity</button>
-                    
                 </div>
         )
     }
