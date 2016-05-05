@@ -9,7 +9,7 @@ module.exports = React.createClass({
 	},
 
 	render: function(){
-		console.log("User Info", this.state.user);
+		//console.log("User Info", this.state.user);
 		var imgSrc = this.state.user[4];
 		return(
 
