@@ -9,7 +9,11 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String,
-        lastname 	 : String
+        lastname 	 : String,
+        picture 	 : String,
+        city	 	 : String,
+        country		 : String,
+        age		 	 : Number
     }
 });
 

@@ -24,7 +24,17 @@ module.exports = function(passport) {
     
     // code for login (use('local-login', new LocalStategy))
     // code for signup (use('local-signup', new LocalStategy))
+    var calcAge = function(birthday){
+        var today = new Date();
+        var birthDate = new Date(birthday);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
 
+    }
     // =========================================================================
     // FACEBOOK ================================================================
     // =========================================================================
@@ -34,7 +44,7 @@ module.exports = function(passport) {
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
-        profileFields   : ['id', 'name', 'email']
+        profileFields   : ['id', 'name', 'email', 'picture.type(large)', 'location', 'birthday']
         //passReqToCallback : true
 
     },
@@ -63,8 +73,8 @@ module.exports = function(passport) {
                     console.log(user);*/
                     console.log()
                     return done(null, user); // user found, return that user
-                } else {
-                    
+                } else {         
+                    //console.log("Profile PASSPORT", profile);           
                     // if there is no user found with that facebook id, create them
                     var newUser            = new User();
                     // set all of the facebook information in our user model
@@ -73,7 +83,14 @@ module.exports = function(passport) {
                     newUser.facebook.name  = profile.name.givenName;// + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
                     newUser.facebook.lastname = profile.name.familyName;
                     newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
-                    console.log("facebook email", newUser.facebook.email);
+                    newUser.facebook.picture = profile.photos[0].value;
+                    var str = profile._json.location.name;
+                    var strArray = str.split(',');
+                    newUser.facebook.city = strArray[0];
+                    newUser.facebook.country = strArray[1];
+
+                    newUser.facebook.age = calcAge(profile._json.birthday);
+
                     // save our user to the database
                     newUser.save(function(err) {
                         if (err)
