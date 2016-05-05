@@ -10,19 +10,11 @@ module.exports = React.createClass({
 		};
 
 	},
-	/*componentDidMount:function(){
-		console.log("TJOOOO");
-		this.setState({
-			query:"",
-			filteredData:this.props.activities
-		});
-	},*/
+
 	componentWillReceiveProps:function(nextProps){
-		console.log(nextProps.activities);
 		this.setState({
 			filteredData:nextProps.activities
 		});
-		//console.log(nextProps);
 
 	},
 	search:function(queryText){
@@ -45,7 +37,6 @@ module.exports = React.createClass({
 	},
 
 	render:function(){
-		//console.log(this.props.activities);
 			return(
 			<div>
 				<h2> Search activity </h2>

@@ -8,7 +8,7 @@ var Router = require("react-router");
 var LoginPage = React.createClass({
 
     getInitialState: function(){
-        //console.log(this.props.user);
+        
         var val = document.getElementById('usertoken').getAttribute('data-value');
         var name = document.getElementById('name').getAttribute('data-value');
         var email = document.getElementById('email').getAttribute('data-value');
@@ -18,10 +18,6 @@ var LoginPage = React.createClass({
 
     },
 
-    componentDidMount: function(){
-        //console.log(this.props.user);
-        
-    },
     _onButtonClick:function() {
         this.setState({
           showActivityPage: true,

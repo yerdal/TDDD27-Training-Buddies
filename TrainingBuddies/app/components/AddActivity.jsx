@@ -9,7 +9,8 @@ module.exports = React.createClass({
 			location:"",
 			description:"",
 			level:"",
-			owner:this.props.user
+			owner:"",
+			participants:[]
 
 		}
 	},
@@ -27,9 +28,18 @@ module.exports = React.createClass({
 		this.setState(state);
 	},
 	selectLevel:function(e){
-		console.log("selectLevel",e.target.value);
+
 		this.setState({level: e.target.value});
 	},
+	setOwner:function(){
+		var newParticipants = [];
+		newParticipants.push(this.props.user);
+		this.setState({
+			owner: this.props.user, 
+			participants:newParticipants
+		});
+	},
+
 
 	render:function(){
 
@@ -63,7 +73,7 @@ module.exports = React.createClass({
 
 
 				<div className="form-group">
-					<button className="btn" type="submit">Add Activity</button>
+					<button className="btn" type="submit" onClick={this.setOwner} >Add Activity</button>
 				</div>
 			</form>
 			

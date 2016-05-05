@@ -9,7 +9,6 @@ module.exports = React.createClass({
 	},
 
 	render: function(){
-		console.log("user", this.state.user);
 		return(
 
 			<div>
