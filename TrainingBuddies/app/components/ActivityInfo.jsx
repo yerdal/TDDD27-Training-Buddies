@@ -12,7 +12,7 @@ module.exports = React.createClass({
                     
                     <div className="panel-heading">
                     <span className="pull-right text-uppercase delete-button" onClick={this.deleteActivity}>&times;</span>
-                     <h4>{this.props.info.name} with {this.props.info.owner}</h4> 
+                     <h4>{this.props.info.name} with {this.props.info.owner[1]} {this.props.info.owner[2]}</h4> 
                      <h5>{this.props.info.location}</h5>
                                              
                     </div>
