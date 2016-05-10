@@ -98,7 +98,7 @@ module.exports = React.createClass({displayName: "exports",
 },{"./ActivityInfo.jsx":4,"./AddActivity.jsx":5,"react":243}],4:[function(require,module,exports){
 var React = require("react");
 var actions = require("../actions/ActivityActions");
-
+var $ = require("jquery");
 var ActivityInfo = React.createClass({displayName: "ActivityInfo",
 
     getInitialState:function(){
@@ -158,11 +158,18 @@ var ActivityInfo = React.createClass({displayName: "ActivityInfo",
     {
         // just delete and then add a new activity with the new participant. 
         //might not be the most efficient solution.
+        var modifiedActivity = $.extend(true, {}, this.props.info);
+        console.log("MODIFIED");
+        console.log(modifiedActivity);
 
-        var modifiedActivity = this.props.info;
         modifiedActivity.participants.push(this.props.user);
         actions.deleteActivity(this.props.info);
         actions.addActivity(modifiedActivity);
+
+               /* var modifiedActivity = this.props.info;
+        modifiedActivity.participants.push(this.props.user);
+        actions.deleteActivity(this.props.info);
+        actions.addActivity(modifiedActivity);*/
     },
 
     render:function(){
@@ -192,7 +199,7 @@ var ActivityInfo = React.createClass({displayName: "ActivityInfo",
 
 module.exports = ActivityInfo;
 
-},{"../actions/ActivityActions":1,"react":243}],5:[function(require,module,exports){
+},{"../actions/ActivityActions":1,"jquery":64,"react":243}],5:[function(require,module,exports){
 var React = require("react");
 
 var actions = require("../actions/ActivityActions");

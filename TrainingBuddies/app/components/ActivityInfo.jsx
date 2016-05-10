@@ -1,6 +1,6 @@
 var React = require("react");
 var actions = require("../actions/ActivityActions");
-
+var $ = require("jquery");
 var ActivityInfo = React.createClass({
 
     getInitialState:function(){
@@ -60,11 +60,18 @@ var ActivityInfo = React.createClass({
     {
         // just delete and then add a new activity with the new participant. 
         //might not be the most efficient solution.
+        var modifiedActivity = $.extend(true, {}, this.props.info);
+        console.log("MODIFIED");
+        console.log(modifiedActivity);
 
-        var modifiedActivity = this.props.info;
         modifiedActivity.participants.push(this.props.user);
         actions.deleteActivity(this.props.info);
         actions.addActivity(modifiedActivity);
+
+               /* var modifiedActivity = this.props.info;
+        modifiedActivity.participants.push(this.props.user);
+        actions.deleteActivity(this.props.info);
+        actions.addActivity(modifiedActivity);*/
     },
 
     render:function(){
