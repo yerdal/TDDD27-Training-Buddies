@@ -13,10 +13,4 @@ module.exports = {
 			type:"activity:deleteActivity"
 		});
 	},
-	joinActivity:function(activity){
-		dispatcher.dispatch({
-			activity:activity,
-			type:"activity:joinActivity"
-		});
-	}
 }

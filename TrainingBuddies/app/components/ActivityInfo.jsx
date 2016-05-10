@@ -1,17 +1,14 @@
 var React = require("react");
 var actions = require("../actions/ActivityActions");
-var JoinActivity = require("./JoinActivity.jsx");
 
 var ActivityInfo = React.createClass({
 
     getInitialState:function(){
-        //console.log("HEJ INITIAL");
-
 
            for (var i = 0; i < this.props.info.participants.length; i++)
            {
                // already joined
-               if (this.props.userToken == this.props.info.participants[i][0])
+               if (this.props.user[0] == this.props.info.participants[i][0])
                {
                    return{
                        ableToJoin:false
@@ -25,11 +22,11 @@ var ActivityInfo = React.createClass({
     },
 
     componentWillReceiveProps:function(nextProps){
-        //console.log(nextProps.info);
+
           this.setState({
               ableToJoin:true
           });
-        if ((nextProps.info.owner[0] == nextProps.userToken))
+        if ((nextProps.info.owner[0] == nextProps.user[0]))
         {
 
             this.setState({
@@ -42,7 +39,7 @@ var ActivityInfo = React.createClass({
             for (var i = 0; i < nextProps.info.participants.length; i++)
             {
                 // already joined
-                if (nextProps.userToken == nextProps.info.participants[i][0])
+                if (nextProps.user[0] == nextProps.info.participants[i][0])
                 {
                     this.setState({
                         ableToJoin:false
@@ -59,11 +56,17 @@ var ActivityInfo = React.createClass({
         actions.deleteActivity(this.props.info);
     },
 
+    joinActivity:function(e)
+    {
+        // just delete and then add a new activity with the new participant. 
+        //might not be the most efficient solution.
+        actions.deleteActivity(this.props.info);
+        this.props.info.participants.push(this.props.user);
+        actions.addActivity(this.props.info);
+    },
 
     render:function(){
-        //console.log("I render: ");
-        //console.log(this.state.ableToJoin);
-        //console.log(this.props.info);
+
         return(
                 <div className="panel panel-default">
                     
@@ -78,7 +81,7 @@ var ActivityInfo = React.createClass({
                     <div id="levelFooter" className="panel-footer">{this.props.info.level}</div>
                      <div className="join">
                          {this.state.ableToJoin ?
-                                    <JoinActivity activities ={this.props.info} /> :
+                                    <button className="btn" onClick ={this.joinActivity} type="submit">Join activity</button>  :
                                     null
                                  }
                     </div>

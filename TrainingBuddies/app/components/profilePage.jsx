@@ -47,16 +47,21 @@ module.exports = React.createClass({
 	},
 	joinedFilter:function(){
 		var joinedAct = [];
+		console.log("JoindeFilter", this.state.activities[7].owner[0]);
 
 		for(var i = 0; i < this.state.activities.length; i++){
-			if(this.state.user[0] == this.state.activities[i].participants[0][0]){
-				joinedAct.push(this.state.activities[i]);
+			for(var j = 0; j < this.state.activities[i].participants.length; j++){
+
+				if((this.state.user[0] == this.state.activities[i].participants[j][0]) && 
+					(this.state.user[0] != this.state.activities[i].owner[0])){
+					joinedAct.push(this.state.activities[i]);
+				}	
 			}
 		}
 		this.setState({
 			joinedActivites:joinedAct
 		});
-		//console.log("joinedActivites", joinedAct);
+		console.log("joinedActivites", joinedAct);
 	},
 
 	render: function(){
@@ -64,7 +69,7 @@ module.exports = React.createClass({
 		0:ID, 1:Firstname , 2:Lastname , 3:Email
 		4:Profile picture , 5:City , 6:Country, 7:Age
 		*/
-		//console.log("Participants", this.state.joinedActivites);
+		console.log("Participants", this.state.joinedActivites);
 		return(
 
 			<div className="row">
