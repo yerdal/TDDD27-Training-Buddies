@@ -5,7 +5,7 @@ var JoinActivity = require("./JoinActivity.jsx");
 var ActivityInfo = React.createClass({
 
     getInitialState:function(){
-        console.log("HEJ INITIAL");
+        //console.log("HEJ INITIAL");
 
 
            for (var i = 0; i < this.props.info.participants.length; i++)
@@ -25,7 +25,7 @@ var ActivityInfo = React.createClass({
     },
 
     componentWillReceiveProps:function(nextProps){
-        console.log(nextProps.info);
+        //console.log(nextProps.info);
           this.setState({
               ableToJoin:true
           });
@@ -61,9 +61,9 @@ var ActivityInfo = React.createClass({
 
 
     render:function(){
-        console.log("I render: ");
-        console.log(this.state.ableToJoin);
-        console.log(this.props.info);
+        //console.log("I render: ");
+        //console.log(this.state.ableToJoin);
+        //console.log(this.props.info);
         return(
                 <div className="panel panel-default">
                     
