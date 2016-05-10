@@ -2,38 +2,68 @@ var React = require("react");
 var actions = require("../actions/ActivityActions");
 var JoinActivity = require("./JoinActivity.jsx");
 
-module.exports = React.createClass({
+var ActivityInfo = React.createClass({
 
-    getInitialState:function()
-    {
-        return{ableToJoin:true};
+    getInitialState:function(){
+        console.log("HEJ INITIAL");
+
+
+           for (var i = 0; i < this.props.info.participants.length; i++)
+           {
+               // already joined
+               if (this.props.userToken == this.props.info.participants[i][0])
+               {
+                   return{
+                       ableToJoin:false
+                   };
+               }
+           }
+
+       return{
+           ableToJoin:true
+       };
     },
+
+    componentWillReceiveProps:function(nextProps){
+        console.log(nextProps.info);
+          this.setState({
+              ableToJoin:true
+          });
+        if ((nextProps.info.owner[0] == nextProps.userToken))
+        {
+
+            this.setState({
+                ableToJoin:false
+            });
+            
+        }
+        else
+        {
+            for (var i = 0; i < nextProps.info.participants.length; i++)
+            {
+                // already joined
+                if (nextProps.userToken == nextProps.info.participants[i][0])
+                {
+                    this.setState({
+                        ableToJoin:false
+                    });
+                }
+            }
+
+        }
+
+    },
+
     deleteActivity: function(e){
         e.preventDefault();
         actions.deleteActivity(this.props.info);
     },
-    componentDidMount:function()
-    {
-        // compare user tokens to see if it's your own activity or not, or if you have already joined.
-        // if not, you are able to join, so show join button.
-       
-        //console.log("Owner " + this.props.info.owner[0]);
-        //console.log("Participants" + this.props.info.participants[0][0]);
-        if (this.props.info.owner[0] !== this.props.info.participants[0][0]){
-            this.setState({
-                ableToJoin:true
-            });
-        }
-        else{
-            this.setState({
-                ableToJoin:false
-            });
-        }
 
-    },
 
     render:function(){
-
+        console.log("I render: ");
+        console.log(this.state.ableToJoin);
+        console.log(this.props.info);
         return(
                 <div className="panel panel-default">
                     
@@ -41,19 +71,20 @@ module.exports = React.createClass({
                         <span className="pull-right text-uppercase delete-button" onClick={this.deleteActivity}>&times;</span>
                          <h4>{this.props.info.name} with {this.props.info.owner[1]} {this.props.info.owner[2]}</h4> 
                          <h5>{this.props.info.location}</h5>
-                         <div className="joinBtn">
-                             {this.state.ableToJoin ?
-                                <JoinActivity user={this.props.user} /> :
-                                null
-                            }
-                        </div>
                                                
                     </div>
 
                     <div className="panel-body">{this.props.info.description}</div>
                     <div id="levelFooter" className="panel-footer">{this.props.info.level}</div>
-                    
+                     <div className="join">
+                         {this.state.ableToJoin ?
+                                    <JoinActivity activities ={this.props.info} /> :
+                                    null
+                                 }
+                    </div>
                 </div>
         )
     }
 })
+
+module.exports = ActivityInfo;

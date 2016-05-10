@@ -78,9 +78,9 @@ module.exports = React.createClass({
 				</div>
 				<div>
 					<h4>Your activities:</h4>
-					<UserActivities usrActivities={this.state.usrActivities}/>
+					<UserActivities usrActivities={this.state.usrActivities} user={this.state.user}/>
 					<h4>Participated activities: </h4>
-					<JoinedActivities joinedActivities={this.state.joinedActivites} />
+					<JoinedActivities joinedActivities={this.state.joinedActivites} user={this.state.user} />
 				</div>
 			</div>
 
