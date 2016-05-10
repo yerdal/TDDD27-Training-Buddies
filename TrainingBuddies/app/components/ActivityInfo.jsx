@@ -60,9 +60,11 @@ var ActivityInfo = React.createClass({
     {
         // just delete and then add a new activity with the new participant. 
         //might not be the most efficient solution.
+
+        var modifiedActivity = this.props.info;
+        modifiedActivity.participants.push(this.props.user);
         actions.deleteActivity(this.props.info);
-        this.props.info.participants.push(this.props.user);
-        actions.addActivity(this.props.info);
+        actions.addActivity(modifiedActivity);
     },
 
     render:function(){
