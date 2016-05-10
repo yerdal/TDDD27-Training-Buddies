@@ -5,29 +5,54 @@ var JoinActivity = require("./JoinActivity.jsx");
 var ActivityInfo = React.createClass({
 
     getInitialState:function(){
-       if ((this.props.info.owner[0] !== this.props.userToken))
-       {
-           return({
-               ableToJoin:true
-           });
-       }
-       else
-       {
+        console.log("HEJ INITIAL");
+
+
            for (var i = 0; i < this.props.info.participants.length; i++)
            {
                // already joined
                if (this.props.userToken == this.props.info.participants[i][0])
                {
-                   return({
+                   return{
                        ableToJoin:false
-                   });
+                   };
                }
            }
-           return({
-               ableToJoin:true
-           });
-       }
+       
+       return{
+           ableToJoin:true
+       };
     },
+
+    componentWillReceiveProps:function(nextProps){
+        console.log(nextProps.info);
+          this.setState({
+              ableToJoin:true
+          });
+        if ((nextProps.info.owner[0] == nextProps.userToken))
+        {
+            this.setState({
+                ableToJoin:false
+            });
+            
+        }
+        else
+        {
+            for (var i = 0; i < nextProps.info.participants.length; i++)
+            {
+                // already joined
+                if (nextProps.userToken == nextProps.info.participants[i][0])
+                {
+                    this.setState({
+                        ableToJoin:false
+                    });
+                }
+            }
+
+        }
+
+    },
+
     deleteActivity: function(e){
         e.preventDefault();
         actions.deleteActivity(this.props.info);
@@ -35,7 +60,9 @@ var ActivityInfo = React.createClass({
 
 
     render:function(){
-        console.log()
+        console.log("I render: ");
+        console.log(this.state.ableToJoin);
+        console.log(this.props.info);
         return(
                 <div className="panel panel-default">
                     
@@ -50,7 +77,7 @@ var ActivityInfo = React.createClass({
                     <div id="levelFooter" className="panel-footer">{this.props.info.level}</div>
                      <div className="join">
                          {this.state.ableToJoin ?
-                                    <JoinActivity /> :
+                                    <JoinActivity activities ={this.props.info} /> :
                                     null
                                  }
                     </div>
