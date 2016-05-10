@@ -19,7 +19,6 @@ module.exports = React.createClass({
 	},
 
 	render: function(){
-		console.log("Joined!!", this.state.joinedAct);
 		return( 
 				<ActivitiesList activities={this.state.joinedAct} user={this.props.user} showForm={false} />
 			)
