@@ -14,7 +14,7 @@ var ActivityInfo = React.createClass({
                    };
                }
            }
-       
+
        return{
            ableToJoin:true
        };
@@ -26,6 +26,7 @@ var ActivityInfo = React.createClass({
           });
         if ((nextProps.info.owner[0] == nextProps.user[0]))
         {
+
             this.setState({
                 ableToJoin:false
             });

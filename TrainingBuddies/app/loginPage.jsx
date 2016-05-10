@@ -18,7 +18,11 @@ var LoginPage = React.createClass({
         var country = document.getElementById('country').getAttribute('data-value');
         var age = document.getElementById('age').getAttribute('data-value');
         //console.log("location", location);
-        return{showActivityPage:false, user:[val, name, lastname, email, picture, city, country, age], showProfilePage:true};
+        return{
+          showActivityPage:false,
+          user:[val, name, lastname, email, picture, city, country, age],
+          showProfilePage:true
+        };
 
     },
 

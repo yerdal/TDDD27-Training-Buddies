@@ -4,19 +4,33 @@ var AddActivity = require("./AddActivity.jsx");
 
 module.exports = React.createClass({
 
+    getInitialState:function(){
+        
+        return({
+            showForm:true
+        });
+    },
+
+    componentDidMount:function(){
+      this.setState({
+        showForm:true
+      });
+
+  },
+
    render:function(){
     /* Have no idea why I cant just set usertoken and username directly as state in render*/
+
         var us = this.props.user;
        return(
-           <div className="row">
-                <div className="col-md-6">
-                    <AddActivity user={this.props.user}/>
-                </div>
+           <div>
+                    {this.props.showForm ?
+                      <AddActivity user={this.props.user}/> :
+                      null
+                    }
                 <div>
-                  <div className="col-md-6"> Activities </div>
-                  <div className="col-md-6">
+                  <div id="activites" className="col-md-4">
                     {
-
                         this.props.activities.map(function(s,index){
                             return(
                                 <ActivityInfo info={s} key={"activity"+index} user={us}  />

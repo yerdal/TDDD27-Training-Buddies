@@ -33,3 +33,33 @@ a {
 #levelFooter{
 	font-weight: bold;
 }
+
+#activites{
+	overflow:auto;
+	height: 100vh;
+}
+#addActivity{
+	overflow: hidden;
+}
+
+#wrapper{
+	overflow: hidden;
+}
+
+#profileBox{
+	float:left;
+	border: 1px solid green;
+}
+
+#usrActivities{
+	float:left;
+	/*margin-left: 300px;*/
+	width:40vw;
+	border: 1px solid black;
+}
+#partActivities{
+	float:left;
+	width: 40vw;
+	border: 1px solid black;
+}
+
