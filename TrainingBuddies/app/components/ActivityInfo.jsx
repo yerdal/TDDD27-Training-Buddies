@@ -4,6 +4,7 @@ var actions = require("../actions/ActivityActions");
 var ActivityInfo = React.createClass({
 
     getInitialState:function(){
+
            for (var i = 0; i < this.props.info.participants.length; i++)
            {
                // already joined
@@ -21,6 +22,7 @@ var ActivityInfo = React.createClass({
     },
 
     componentWillReceiveProps:function(nextProps){
+
           this.setState({
               ableToJoin:true
           });
@@ -58,14 +60,13 @@ var ActivityInfo = React.createClass({
     {
         // just delete and then add a new activity with the new participant. 
         //might not be the most efficient solution.
-        var replaceActivity = this.props.info;
-        replaceActivity.participants.push(this.props.user);
         actions.deleteActivity(this.props.info);
-        actions.addActivity(replaceActivity);
+        this.props.info.participants.push(this.props.user);
+        actions.addActivity(this.props.info);
     },
 
     render:function(){
-        console.log(this.props.info);
+
         return(
                 <div className="panel panel-default">
                     
