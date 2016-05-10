@@ -3,18 +3,30 @@ var ActivityInfo = require("./ActivityInfo.jsx")
 var AddActivity = require("./AddActivity.jsx");
 
 module.exports = React.createClass({
+  getInitialState:function(){
+    return({
+        showForm:true
+        }
+      )
+  },
+
+  componentDidMount:function(){
+    this.setState({
+      showForm:true
+    });
+
+  },
    render:function(){
-
+    //console.log("List", this.props.activities.participants);
        return(
-           <div className="row">
-                <div className="col-md-6">
-                    <AddActivity user={this.props.user}/>
-                </div>
+           <div>
+                    {this.props.showForm ?
+                      <AddActivity user={this.props.user}/> :
+                      null
+                    }
                 <div>
-                  <div className="col-md-6"> Activities </div>
-                  <div className="col-md-6">
+                  <div id="activites" className="col-md-4">
                     {
-
                         this.props.activities.map(function(s,index){
 
                             return(

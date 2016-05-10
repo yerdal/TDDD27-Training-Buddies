@@ -41,7 +41,7 @@ module.exports = React.createClass({
 			<div>
 				<h2> Search activity </h2>
 				<SearchActivity query={this.state.query} search={this.search} />
-				<ActivitiesList activities={this.state.filteredData} user={this.props.user} />
+				<ActivitiesList activities={this.state.filteredData} user={this.props.user} showForm={true} />
 			</div>
 			)
 

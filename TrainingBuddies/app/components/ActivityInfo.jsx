@@ -17,8 +17,8 @@ module.exports = React.createClass({
         // compare user tokens to see if it's your own activity or not, or if you have already joined.
         // if not, you are able to join, so show join button.
        
-        console.log("Owner " + this.props.info.owner[0]);
-        console.log("Participants" + this.props.info.participants[0][0]);
+        //console.log("Owner " + this.props.info.owner[0]);
+        //console.log("Participants" + this.props.info.participants[0][0]);
         if (this.props.info.owner[0] !== this.props.info.participants[0][0]){
             this.setState({
                 ableToJoin:true
@@ -47,8 +47,6 @@ module.exports = React.createClass({
                                 null
                             }
                         </div>
-
-
                                                
                     </div>
 
