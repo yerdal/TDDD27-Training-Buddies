@@ -33,6 +33,7 @@ var ActivityInfo = React.createClass({
     },
 
     componentWillReceiveProps:function(nextProps){
+
           this.setState({
               ableToJoin:true,
               ableToDelete:false,
@@ -115,6 +116,7 @@ var ActivityInfo = React.createClass({
                                 }
                          <h4>{this.props.info.name} with <a clicked={this.state.showProfile} onClick={this.onNameClick}> {this.props.info.owner[1]} {this.props.info.owner[2]} </a></h4> 
                          <h5>{this.props.info.location}</h5>
+                         <h5>{this.props.info.time}, {this.props.info.date}</h5>
                                                
                     </div>
 
