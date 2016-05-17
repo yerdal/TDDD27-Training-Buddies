@@ -63,8 +63,7 @@ var ActivityInfo = React.createClass({
         actions.deleteActivity(this.props.info);
     },
 
-    joinActivity:function(e)
-    {
+    joinActivity:function(e){
         // just delete and then add a new activity with the new participant. 
         //might not be the most efficient solution.
         console.log("join: ");
@@ -76,6 +75,19 @@ var ActivityInfo = React.createClass({
         actions.deleteActivity(this.props.info);
         actions.addActivity(modifiedActivity);
 
+    },
+    leaveActivity:function(){
+        var modifiedActivity = $.extend(true, {}, this.props.info);
+        // remove participant
+        for (var i = 0; i < this.props.info.participants.length; i++){
+            if (this.props.user[0] == this.props.info.participants[i][0]){
+                modifiedActivity.participants.splice(i, 1);
+            }
+        }
+        console.log("initial act: " + this.props.info);
+        console.log("after delete: " + modifiedActivity);
+        actions.deleteActivity(this.props.info);
+        actions.addActivity(modifiedActivity);
     },
 
     render:function(){
@@ -98,11 +110,26 @@ var ActivityInfo = React.createClass({
 
                     <div className="panel-body">{this.props.info.description}</div>
                     <div id="levelFooter" className="panel-footer">{this.props.info.level}</div>
-                     <div className="join">
-                         {this.state.ableToJoin ?
-                                    <button className="btn" onClick ={this.joinActivity} type="submit">Join activity</button>  :
-                                    null
-                                 }
+                        <div className="join">
+                        {this.state.ableToJoin && this.state.ableToDelete ?
+                            null : 
+                            null
+                        }
+                        {this.state.ableToJoin && !this.state.ableToDelete ?
+                            <button className="btn" onClick ={this.joinActivity} type="submit">Join activity</button> :
+                            null
+                        }
+                        {!this.state.ableToJoin && this.state.ableToDelete ?
+                            null :
+                            null
+
+                        }
+                        {!this.state.ableToJoin && !this.state.ableToDelete ? 
+                            <button className="btn" onClick ={this.leaveActivity} type="submit">Leave activity</button> :
+                            null
+                        }
+
+
                     </div>
                 </div>
         )
