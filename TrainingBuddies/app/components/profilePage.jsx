@@ -47,7 +47,7 @@ module.exports = React.createClass({
 	},
 	joinedFilter:function(){
 		var joinedAct = [];
-		console.log("JoindeFilter", this.state.activities[7].owner[0]);
+		//console.log("JoindeFilter", this.state.activities[7].owner[0]);
 
 		for(var i = 0; i < this.state.activities.length; i++){
 			for(var j = 0; j < this.state.activities[i].participants.length; j++){
@@ -61,7 +61,7 @@ module.exports = React.createClass({
 		this.setState({
 			joinedActivites:joinedAct
 		});
-		console.log("joinedActivites", joinedAct);
+		//console.log("joinedActivites", joinedAct);
 	},
 
 	render: function(){

@@ -6,6 +6,7 @@ var activitySchema = mongoose.Schema({
 	description: String,
 	level: String,
 	owner: Array,
+	date:String,
 	participants: Array
 
 });

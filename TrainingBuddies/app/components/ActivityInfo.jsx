@@ -22,7 +22,7 @@ var ActivityInfo = React.createClass({
     },
 
     componentWillReceiveProps:function(nextProps){
-
+          console.log("testDate", this.props.info);
           this.setState({
               ableToJoin:true
           });
@@ -72,8 +72,9 @@ var ActivityInfo = React.createClass({
                     
                     <div className="panel-heading">
                         <span className="pull-right text-uppercase delete-button" onClick={this.deleteActivity}>&times;</span>
-                         <h4>{this.props.info.name} with {this.props.info.owner[1]} {this.props.info.owner[2]}</h4> 
+                         <h4>{this.props.info.name} with </h4> <h5><a href="/profile">{this.props.info.owner[1]} {this.props.info.owner[2]}</a> </h5>
                          <h5>{this.props.info.location}</h5>
+                         <h5>{this.props.info.date}</h5>
                                                
                     </div>
 
