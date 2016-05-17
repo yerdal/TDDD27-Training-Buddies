@@ -42,9 +42,8 @@ var ActivityInfo = React.createClass({
             });
             
         }
-        else{
-            for (var i = 0; i < nextProps.info.participants.length; i++)
-            {
+        else {
+            for (var i = 0; i < nextProps.info.participants.length; i++){
                 // already joined
                 if (nextProps.user[0] == nextProps.info.participants[i][0])
                 {
@@ -66,6 +65,7 @@ var ActivityInfo = React.createClass({
     joinActivity:function(e){
         // just delete and then add a new activity with the new participant. 
         //might not be the most efficient solution.
+        e.preventDefault();
         console.log("join: ");
         console.log(this.props.info);
         var modifiedActivity = $.extend(true, {}, this.props.info);
@@ -76,7 +76,8 @@ var ActivityInfo = React.createClass({
         actions.addActivity(modifiedActivity);
 
     },
-    leaveActivity:function(){
+    leaveActivity:function(e){
+        e.preventDefault();
         var modifiedActivity = $.extend(true, {}, this.props.info);
         // remove participant
         for (var i = 0; i < this.props.info.participants.length; i++){
@@ -91,9 +92,7 @@ var ActivityInfo = React.createClass({
     },
 
     render:function(){
-        // if able to join (not owner), render join button. Else, render delete button.
-        console.log(this.props.info);
-        console.log(this.state.ableToJoin);
+
         return(
                 <div className="panel panel-default">
                     
