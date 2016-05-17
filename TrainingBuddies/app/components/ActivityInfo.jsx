@@ -29,7 +29,7 @@ var ActivityInfo = React.createClass({
     },
 
     componentWillReceiveProps:function(nextProps){
-          console.log("testDate", this.props.info);
+          //console.log("testDate", this.props.info.time);
           this.setState({
               ableToJoin:true,
               ableToDelete:false
@@ -104,6 +104,7 @@ var ActivityInfo = React.createClass({
                                 }
                          <h4>{this.props.info.name} with {this.props.info.owner[1]} {this.props.info.owner[2]}</h4> 
                          <h5>{this.props.info.location}</h5>
+                         <h5>{this.props.info.time}, {this.props.info.date}</h5>
                                                
                     </div>
 
