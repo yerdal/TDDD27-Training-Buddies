@@ -25,29 +25,22 @@ module.exports = React.createClass({
 		this.setState({activities: theActivities});
 		this.filterByUser();
 		this.joinedFilter();
-		//console.log("UserActivites", this.state.activities[0].owner);
 	},
 
 	filterByUser:function(){
 		var userAct = [];
-		//console.log("BeforeFilter", this.state.activities);
-		//console.log("profilePage",this.state.activities[0].participants[0][1]);
 
 		for(var i = 0; i < this.state.activities.length; i++){
 			if (this.state.user[0] == this.state.activities[i].owner[0]){
 				userAct.push(this.state.activities[i]);
 			}
 		}
-		//console.log("UserAct array",userAct);
 		this.setState({
 			usrActivities:userAct
 		});
-		//console.log("Original act", this.state.activities);
-		//console.log("AfterFilter", this.state.usrActivities.owner);
 	},
 	joinedFilter:function(){
 		var joinedAct = [];
-		//console.log("JoindeFilter", this.state.activities[7].owner[0]);
 
 		for(var i = 0; i < this.state.activities.length; i++){
 			for(var j = 0; j < this.state.activities[i].participants.length; j++){
@@ -61,7 +54,6 @@ module.exports = React.createClass({
 		this.setState({
 			joinedActivites:joinedAct
 		});
-		//console.log("joinedActivites", joinedAct);
 	},
 
 	render: function(){
@@ -69,7 +61,6 @@ module.exports = React.createClass({
 		0:ID, 1:Firstname , 2:Lastname , 3:Email
 		4:Profile picture , 5:City , 6:Country, 7:Age
 		*/
-		console.log("Participants", this.state.joinedActivites);
 		return(
 
 			<div className="row">

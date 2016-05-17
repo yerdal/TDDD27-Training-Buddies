@@ -4,7 +4,6 @@ var React = require("react");
 module.exports = React.createClass({displayName: "exports",
 
     componentWillUnmount:function(){
-        console.log("tjohej");
 
     },
 

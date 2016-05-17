@@ -102,49 +102,56 @@ var $ = require("jquery");
 var ActivityInfo = React.createClass({displayName: "ActivityInfo",
 
     getInitialState:function(){
-
-           for (var i = 0; i < this.props.info.participants.length; i++)
-           {
+           for (var i = 0; i < this.props.info.participants.length; i++){
+                // is owner. should not be able to join, but delete.
+               if (this.props.user[0] == this.props.info.owner[0]){
+                  return{
+                    ableToJoin:false,
+                    ableToDelete:true
+                  }
+               }
                // already joined
-               if (this.props.user[0] == this.props.info.participants[i][0])
-               {
+
+               else if (this.props.user[0] == this.props.info.participants[i][0]){
                    return{
-                       ableToJoin:false
+                       ableToJoin:false,
+                       ableToDelete:false
                    };
                }
            }
 
        return{
-           ableToJoin:true
+           ableToJoin:true,
+           ableToDelete:false
        };
     },
 
     componentWillReceiveProps:function(nextProps){
 
           this.setState({
-              ableToJoin:true
+              ableToJoin:true,
+              ableToDelete:false
           });
-        if ((nextProps.info.owner[0] == nextProps.user[0]))
-        {
+        if ((nextProps.info.owner[0] == nextProps.user[0])){
 
             this.setState({
-                ableToJoin:false
+                ableToJoin:false,
+                ableToDelete:true
             });
             
         }
-        else
-        {
+        else{
             for (var i = 0; i < nextProps.info.participants.length; i++)
             {
                 // already joined
                 if (nextProps.user[0] == nextProps.info.participants[i][0])
                 {
                     this.setState({
-                        ableToJoin:false
+                        ableToJoin:false,
+                        ableToDelete: false
                     });
                 }
             }
-
         }
 
     },
@@ -158,29 +165,32 @@ var ActivityInfo = React.createClass({displayName: "ActivityInfo",
     {
         // just delete and then add a new activity with the new participant. 
         //might not be the most efficient solution.
+        console.log("join: ");
+        console.log(this.props.info);
         var modifiedActivity = $.extend(true, {}, this.props.info);
         console.log("MODIFIED");
         console.log(modifiedActivity);
-
         modifiedActivity.participants.push(this.props.user);
         actions.deleteActivity(this.props.info);
         actions.addActivity(modifiedActivity);
 
-               /* var modifiedActivity = this.props.info;
-        modifiedActivity.participants.push(this.props.user);
-        actions.deleteActivity(this.props.info);
-        actions.addActivity(modifiedActivity);*/
     },
 
     render:function(){
-
+        // if able to join (not owner), render join button. Else, render delete button.
+        console.log(this.props.info);
+        console.log(this.state.ableToJoin);
         return(
                 React.createElement("div", {className: "panel panel-default"}, 
                     
                     React.createElement("div", {className: "panel-heading"}, 
-                        React.createElement("span", {className: "pull-right text-uppercase delete-button", onClick: this.deleteActivity}, "×"), 
+                      this.state.ableToDelete ?
+                                  React.createElement("span", {className: "pull-right text-uppercase delete-button", onClick: this.deleteActivity}, "×") :
+                                  null, 
+                                
                          React.createElement("h4", null, this.props.info.name, " with ", this.props.info.owner[1], " ", this.props.info.owner[2]), 
                          React.createElement("h5", null, this.props.info.location)
+                      
                                                
                     ), 
 
@@ -360,7 +370,6 @@ module.exports = React.createClass({displayName: "exports",
 	},
 
 	render: function(){
-		//console.log("Joined!!", this.state.joinedAct);
 		return( 
 				React.createElement(ActivitiesList, {activities: this.state.joinedAct, user: this.props.user, showForm: false})
 			)
@@ -447,29 +456,22 @@ module.exports = React.createClass({displayName: "exports",
 		this.setState({activities: theActivities});
 		this.filterByUser();
 		this.joinedFilter();
-		//console.log("UserActivites", this.state.activities[0].owner);
 	},
 
 	filterByUser:function(){
 		var userAct = [];
-		//console.log("BeforeFilter", this.state.activities);
-		//console.log("profilePage",this.state.activities[0].participants[0][1]);
 
 		for(var i = 0; i < this.state.activities.length; i++){
 			if (this.state.user[0] == this.state.activities[i].owner[0]){
 				userAct.push(this.state.activities[i]);
 			}
 		}
-		//console.log("UserAct array",userAct);
 		this.setState({
 			usrActivities:userAct
 		});
-		//console.log("Original act", this.state.activities);
-		//console.log("AfterFilter", this.state.usrActivities.owner);
 	},
 	joinedFilter:function(){
 		var joinedAct = [];
-		//console.log("JoindeFilter", this.state.activities[7].owner[0]);
 
 		for(var i = 0; i < this.state.activities.length; i++){
 			for(var j = 0; j < this.state.activities[i].participants.length; j++){
@@ -483,7 +485,6 @@ module.exports = React.createClass({displayName: "exports",
 		this.setState({
 			joinedActivites:joinedAct
 		});
-		//console.log("joinedActivites", joinedAct);
 	},
 
 	render: function(){
@@ -491,7 +492,6 @@ module.exports = React.createClass({displayName: "exports",
 		0:ID, 1:Firstname , 2:Lastname , 3:Email
 		4:Profile picture , 5:City , 6:Country, 7:Age
 		*/
-		console.log("Participants", this.state.joinedActivites);
 		return(
 
 			React.createElement("div", {className: "row"}, 
