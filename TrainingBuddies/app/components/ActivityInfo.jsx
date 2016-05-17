@@ -1,6 +1,7 @@
 var React = require("react");
 var actions = require("../actions/ActivityActions");
 var $ = require("jquery");
+var ProfilePage = require("./PublicProfile.jsx");
 var ActivityInfo = React.createClass({
 
     getInitialState:function(){
@@ -9,7 +10,8 @@ var ActivityInfo = React.createClass({
                if (this.props.user[0] == this.props.info.owner[0]){
                   return{
                     ableToJoin:false,
-                    ableToDelete:true
+                    ableToDelete:true,
+                    showProfile: this.props.initialClicked
                   }
                }
                // already joined
@@ -17,28 +19,31 @@ var ActivityInfo = React.createClass({
                else if (this.props.user[0] == this.props.info.participants[i][0]){
                    return{
                        ableToJoin:false,
-                       ableToDelete:false
+                       ableToDelete:false,
+                       showProfile:this.props.initialClicked
                    };
                }
            }
 
        return{
            ableToJoin:true,
-           ableToDelete:false
+           ableToDelete:false,
+           showProfile:this.props.initialClicked
        };
     },
 
     componentWillReceiveProps:function(nextProps){
-          console.log("testDate", this.props.info);
           this.setState({
               ableToJoin:true,
-              ableToDelete:false
+              ableToDelete:false,
+              showProfile: false
           });
         if ((nextProps.info.owner[0] == nextProps.user[0])){
 
             this.setState({
                 ableToJoin:false,
-                ableToDelete:true
+                ableToDelete:true,
+                showProfile: false
             });
             
         }
@@ -49,7 +54,8 @@ var ActivityInfo = React.createClass({
                 {
                     this.setState({
                         ableToJoin:false,
-                        ableToDelete: false
+                        ableToDelete: false,
+                        showProfile: false
                     });
                 }
             }
@@ -66,11 +72,8 @@ var ActivityInfo = React.createClass({
         // just delete and then add a new activity with the new participant. 
         //might not be the most efficient solution.
         e.preventDefault();
-        console.log("join: ");
-        console.log(this.props.info);
+
         var modifiedActivity = $.extend(true, {}, this.props.info);
-        console.log("MODIFIED");
-        console.log(modifiedActivity);
         modifiedActivity.participants.push(this.props.user);
         actions.deleteActivity(this.props.info);
         actions.addActivity(modifiedActivity);
@@ -85,15 +88,23 @@ var ActivityInfo = React.createClass({
                 modifiedActivity.participants.splice(i, 1);
             }
         }
-        console.log("initial act: " + this.props.info);
-        console.log("after delete: " + modifiedActivity);
         actions.deleteActivity(this.props.info);
         actions.addActivity(modifiedActivity);
+    },
+    onNameClick:function(){
+        console.log("HE PÅ DIG");
+        this.setState({
+            showProfile:true
+        })
+        this.props.callbackParent({
+            show:true,
+            owner: this.props.info.owner});
     },
 
     render:function(){
 
         return(
+            <div className="activities">
                 <div className="panel panel-default">
                     
                     <div className="panel-heading">
@@ -102,7 +113,7 @@ var ActivityInfo = React.createClass({
                                   <span className="pull-right text-uppercase delete-button" onClick={this.deleteActivity}>&times;</span> :
                                   null
                                 }
-                         <h4>{this.props.info.name} with {this.props.info.owner[1]} {this.props.info.owner[2]}</h4> 
+                         <h4>{this.props.info.name} with <a clicked={this.state.showProfile} onClick={this.onNameClick}> {this.props.info.owner[1]} {this.props.info.owner[2]} </a></h4> 
                          <h5>{this.props.info.location}</h5>
                                                
                     </div>
@@ -131,6 +142,7 @@ var ActivityInfo = React.createClass({
 
                     </div>
                 </div>
+            </div>
         )
     }
 })
