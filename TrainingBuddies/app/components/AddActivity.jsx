@@ -29,18 +29,50 @@ module.exports = React.createClass({
 	var year = d.getFullYear();
 	var month = d.getUTCMonth()+1;
 	var day = d.getUTCDate();
+
 	if(month<10){
-		console.log("currDate", year + '-' + '0' + month + '-' + day);
+		//console.log("currDate", year + '-' + '0' + month + '-' + day);
 		var today = year + '-' + '0' + month + '-' + day;
 		return today;
 	}
 	else{
-		console.log("currDate", year + '-' + month + '-' + day)
+		//console.log("currDate", year + '-' + month + '-' + day)
 		var today = year + '-' + month + '-' + day;
 		return today; 
 	}
 	
 	//return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes;
+	},
+
+	currentTime:function(){
+		var d = new Date(),
+		minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
+		hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours();
+
+		var time = hours + ':' + minutes;
+		var chosenDate = this.state.date,
+		splitDate = chosenDate.split("-"),
+		chosenYear = splitDate[0],
+		chosenMonth = splitDate[1],
+		chosenDay = splitDate[2];
+
+		//console.log("chosenDate", chosenYear + ' ' + chosenMonth + ' ' + chosenDay);
+
+		var actDate = this.currentDate().split("-"),
+		actYear = actDate[0], 
+		actMonth = actDate[1],
+		actDay = actDate[2];
+
+		//console.log("actDate", actYear + ' ' + actMonth + ' ' + actDay);
+		
+		if(chosenDay == actDay){
+			if(chosenMonth == actMonth){
+				if(chosenYear == actYear){
+					return time;
+				}
+			}	
+		}
+		return "";
 	},
 
 	addActivity:function(e){		
@@ -112,7 +144,7 @@ module.exports = React.createClass({
 						<input type="date" name="date" min={this.currentDate()} value={this.state.date} 
 						onChange={this.handleInputChange}/>
 						<label className="control-label" htmlFor="timeHtml">Time</label>
-						<input type="time" name="time" min="11:00:00" value={this.state.time}
+						<input type="time" name="time" min={this.currentTime()} value={this.state.time}
 						onChange={this.handleInputChange}/>
 					</div>
 
