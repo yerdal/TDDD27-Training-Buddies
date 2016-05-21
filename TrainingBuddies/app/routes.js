@@ -13,7 +13,6 @@
 
     // route for showing the profile page
     app.get('/profile', isLoggedIn, function(req, res) {
-        console.log(req.user);
 
         res.render('profile.ejs', {
             //markup: markup,
@@ -63,7 +62,6 @@ function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
     {
-        console.log("hejssss");
         return next();
 
     }

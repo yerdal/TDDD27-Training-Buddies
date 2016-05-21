@@ -1,5 +1,4 @@
 // load all the things we need
-console.log("hej");
 
 var FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -68,12 +67,9 @@ module.exports = function(passport) {
 
                 // if the user is found, then log them in
                 if (user) {
-                    /*console.log(profile.emails[0].value);
-                    console.log(profile.name.givenName + " " + profile.name.familyName);
-                    console.log(user);*/
-                    console.log()
                     return done(null, user); // user found, return that user
-                } else {         
+                } 
+                else {         
                     //console.log("Profile PASSPORT", profile);           
                     // if there is no user found with that facebook id, create them
                     var newUser            = new User();

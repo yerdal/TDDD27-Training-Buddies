@@ -49,7 +49,7 @@ module.exports = {
 		var Promise = promise.Promise;
 		return new Promise(function(resolve, reject){
 			$.ajax({
-				url: resourceUrl,
+				url: resourceUrl + "/" + activity._id,
 				data: JSON.stringify(activity),
 				method: "PUT",
 				dataType: "json",

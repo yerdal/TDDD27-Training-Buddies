@@ -26,6 +26,7 @@ function addActivity(req, res) {
 
 function deleteActivity(req, res) {
     var id = req.params.id;
+    console.log(id);
     Activity.remove({ _id: id }, function (err, removed) {
         if (err)
             res.send(err)
@@ -35,13 +36,15 @@ function deleteActivity(req, res) {
 }
 
 function editActivity(req, res) {
-    var id = req.params.id;
-    Activity.save({_id: id}, function(err, edited) {
-        if (err)
-            res.send(err)
-        else
-            res.json(edited)
-    });
+    Activity.findByIdAndUpdate(req.params.id,{$set:req.body}, function(err, result){
+           if(err){
+               console.log(err);
+           }
+           else{
+            console.log("RESULT: " + result);
+            res.send('Done')
+        }
+       });
 }
 
 module.exports = router;
