@@ -42,14 +42,14 @@ var ActivityInfo = React.createClass({
     componentWillReceiveProps:function(nextProps){
 
           this.setState({
-              ableToJoin:this.checkIfFull(),
+              ableToJoin:this.checkIfFullWithNextProps(nextProps),
               ableToDelete:false,
               showProfile: false
           });
         if ((nextProps.info.owner[0] == nextProps.user[0])){
 
             this.setState({
-                ableToJoin:this.checkIfFull(),
+                ableToJoin:this.checkIfFullWithNextProps(nextProps),
                 ableToDelete:true,
                 showProfile: false
             });
@@ -61,7 +61,7 @@ var ActivityInfo = React.createClass({
                 if (nextProps.user[0] == nextProps.info.participants[i][0])
                 {
                     this.setState({
-                        ableToJoin:this.checkIfFull(),
+                        ableToJoin:this.checkIfFullWithNextProps(nextProps),
                         ableToDelete: false,
                         showProfile: false
                     });
@@ -114,7 +114,6 @@ var ActivityInfo = React.createClass({
     },
 
     participantCount:function(){
-      console.log("HEJJJJ");
       if(this.props.info.numPart == this.props.info.participants.length){
           /*this.setState({
             ableToJoin:false
@@ -132,6 +131,15 @@ var ActivityInfo = React.createClass({
       }
       
       return true;
+    },
+    checkIfFullWithNextProps:function(nextProps){
+      if(this.props.info.participants.length == this.props.info.numPart)
+      {
+        return false;
+      }
+      
+      return true;
+
     },
 
     render:function(){
