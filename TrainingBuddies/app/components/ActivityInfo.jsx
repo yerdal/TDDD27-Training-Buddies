@@ -8,7 +8,6 @@ var ActivityInfo = React.createClass({
            for (var i = 0; i < this.props.info.participants.length; i++){
                 // is owner. should not be able to join, but delete.
                if (this.props.user[0] == this.props.info.owner[0]){
-                  if ()
                   return{
                     ableToJoin:false,
                     ableToDelete:true,
