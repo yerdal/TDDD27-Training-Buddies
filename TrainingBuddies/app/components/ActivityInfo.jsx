@@ -84,30 +84,31 @@ var ActivityInfo = React.createClass({
         actions.deleteActivity(this.props.info);
     },
 
-    joinActivity:function(e){
+    joinActivity:function(){
         /* TODO 
          * increase numPart when someone has joined
          * Remove join button when participants are full.
         */
         // just delete and then add a new activity with the new participant. 
         //might not be the most efficient solution.
-        e.preventDefault();
 
-        var modifiedActivity = $.extend(true, {}, this.props.info);
-        modifiedActivity.participants.push(this.props.user);
-        actions.deleteActivity(this.props.info).then(actions.addActivity(modifiedActivity));
+        //var modifiedActivity = $.extend(true, {}, this.props.info);
+        this.props.info.participants.push(this.props.user);
+        /*modifiedActivity.participants.push(this.props.user);
+        actions.deleteActivity(this.props.info);
+        actions.addActivity(modifiedActivity);*/
 
     },
-    leaveActivity:function(e){
-        e.preventDefault();
-        var modifiedActivity = $.extend(true, {}, this.props.info);
+    leaveActivity:function(){
+        //var modifiedActivity = $.extend(true, {}, this.props.info);
         // remove participant
         for (var i = 0; i < this.props.info.participants.length; i++){
             if (this.props.user[0] == this.props.info.participants[i][0]){
-                modifiedActivity.participants.splice(i, 1);
+                this.props.info.participants.splice(i, 1);
             }
         }
-        actions.deleteActivity(this.props.info).then(actions.addActivity(modifiedActivity));
+       /* actions.deleteActivity(this.props.info);
+        actions.addActivity(modifiedActivity);*/
     },
     onNameClick:function(){
         //console.log("HE PÅ DIG");
