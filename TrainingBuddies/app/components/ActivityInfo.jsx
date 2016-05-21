@@ -96,7 +96,7 @@ var ActivityInfo = React.createClass({
         //var modifiedActivity = $.extend(true, {}, this.props.info);
         e.preventDefault();
         this.props.info.participants.push(this.props.user);
-        actions.editActivity(this.props.info);
+        actions.addActivity(this.props.info);
 
         this.setState({
             ableToJoin:false,
@@ -112,7 +112,7 @@ var ActivityInfo = React.createClass({
                 this.props.info.participants.splice(i, 1);
             }
         }
-        actions.editActivity(this.props.info);
+        actions.addActivity(this.props.info);
 
         this.setState({
             ableToJoin:true,

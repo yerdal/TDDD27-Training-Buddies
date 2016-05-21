@@ -31,7 +31,7 @@ function deleteActivity(req, res) {
             res.send(err)
         else
             res.json(removed);
-    });
+    });  
 }
 
 module.exports = router;

@@ -10,7 +10,7 @@ module.exports = {
 			$.ajax({
 				url: resourceUrl,
 				data: JSON.stringify(activity),
-				method: "POST",
+				method: "PUT",
 				dataType: "json",
 				contentType: "application/json",
 				success: resolve,
