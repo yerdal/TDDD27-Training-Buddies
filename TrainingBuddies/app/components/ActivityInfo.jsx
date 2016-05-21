@@ -55,14 +55,6 @@ var ActivityInfo = React.createClass({
             });
             
         }
-        //maximum amount of participants reached.
-        /*else if(nextProps.info.participants.length == nextProps.info.numPart){
-          this.setState({
-            ableToJoin:false,
-            ableToDelete:true,
-            showProfile:false
-          });
-        }*/
         else {
             for (var i = 0; i < nextProps.info.participants.length; i++){
                 // already joined
@@ -134,10 +126,12 @@ var ActivityInfo = React.createClass({
 
     },
     checkIfFull:function(){
-      if(this.props.info.participants.length == this.props.info.numPart){
-        return true;
+      if(this.props.info.participants.length == this.props.info.numPart)
+      {
+        return false;
       }
-      return false;
+      
+      return true;
     },
 
     render:function(){
