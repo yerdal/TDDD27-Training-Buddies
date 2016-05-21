@@ -15,7 +15,6 @@ var ActivityInfo = React.createClass({
                   }
                }
                // already joined
-
                else if (this.props.user[0] == this.props.info.participants[i][0]){
                    return{
                        ableToJoin:this.checkIfFull(),
@@ -23,13 +22,6 @@ var ActivityInfo = React.createClass({
                        showProfile:this.props.initialClicked
                    };
                }
-               /*else if(this.props.info.participants.length == this.props.info.numPart){ 
-
-                   return{ableToJoin:false,
-                        ableToDelete:true,
-                        showProfile:false
-                    };       
-                }*/
            }
 
        return{
@@ -122,22 +114,21 @@ var ActivityInfo = React.createClass({
     },
 
     participantCount:function(){
-      console.log("HEJJJJ");
       if(this.props.info.numPart == this.props.info.participants.length){
           /*this.setState({
             ableToJoin:false
           })*/
           return "Activity Full!";
       }
-
       return this.props.info.participants.length + ' of ' + this.props.info.numPart; 
 
     },
+
     checkIfFull:function(){
       if(this.props.info.participants.length == this.props.info.numPart){
-        return true;
+        return false;
       }
-      return false;
+      return true;
     },
 
     render:function(){
