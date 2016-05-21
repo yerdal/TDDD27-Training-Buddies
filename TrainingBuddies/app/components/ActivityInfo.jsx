@@ -8,8 +8,9 @@ var ActivityInfo = React.createClass({
            for (var i = 0; i < this.props.info.participants.length; i++){
                 // is owner. should not be able to join, but delete.
                if (this.props.user[0] == this.props.info.owner[0]){
+                  if ()
                   return{
-                    ableToJoin:this.checkIfFull(),
+                    ableToJoin:false,
                     ableToDelete:true,
                     showProfile: this.props.initialClicked
                   }
@@ -18,22 +19,22 @@ var ActivityInfo = React.createClass({
 
                else if (this.props.user[0] == this.props.info.participants[i][0]){
                    return{
-                       ableToJoin:this.checkIfFull(),
+                       ableToJoin:false,
                        ableToDelete:false,
                        showProfile:this.props.initialClicked
                    };
                }
-               /*else if(this.props.info.participants.length == this.props.info.numPart){ 
+               else if(this.props.info.participants.length == this.props.info.numPart){ 
 
                    return{ableToJoin:false,
-                        ableToDelete:true,
-                        showProfile:false
+                        ableToDelete:false,
+                        showProfile:this.props.initialClicked
                     };       
-                }*/
+                }
            }
 
        return{
-           ableToJoin:this.checkIfFull(),
+           ableToJoin:true,
            ableToDelete:false,
            showProfile:this.props.initialClicked
        };
@@ -42,18 +43,25 @@ var ActivityInfo = React.createClass({
     componentWillReceiveProps:function(nextProps){
 
           this.setState({
-              ableToJoin:this.checkIfFullWithNextProps(nextProps),
+              ableToJoin:true,
               ableToDelete:false,
               showProfile: false
           });
         if ((nextProps.info.owner[0] == nextProps.user[0])){
 
             this.setState({
-                ableToJoin:this.checkIfFullWithNextProps(nextProps),
+                ableToJoin:false,
                 ableToDelete:true,
                 showProfile: false
             });
             
+        }
+        else if (nextProps.info.participants.length == nextProps.info.numPart){
+          this.setState({
+            ableToJoin:false,
+            ableToDelete:false,
+            showProfile:false
+          });
         }
         else {
             for (var i = 0; i < nextProps.info.participants.length; i++){
@@ -61,13 +69,14 @@ var ActivityInfo = React.createClass({
                 if (nextProps.user[0] == nextProps.info.participants[i][0])
                 {
                     this.setState({
-                        ableToJoin:this.checkIfFullWithNextProps(nextProps),
+                        ableToJoin:false,
                         ableToDelete: false,
                         showProfile: false
                     });
                 }
             }
         }
+
 
     },
 
@@ -122,23 +131,6 @@ var ActivityInfo = React.createClass({
       }
 
       return this.props.info.participants.length + ' of ' + this.props.info.numPart; 
-
-    },
-    checkIfFull:function(){
-      if(this.props.info.participants.length == this.props.info.numPart)
-      {
-        return false;
-      }
-      
-      return true;
-    },
-    checkIfFullWithNextProps:function(nextProps){
-      if(this.props.info.participants.length == this.props.info.numPart)
-      {
-        return false;
-      }
-      
-      return true;
 
     },
 
