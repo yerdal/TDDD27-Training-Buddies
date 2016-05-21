@@ -20,7 +20,6 @@ module.exports = React.createClass({
 	},	
 
 	render: function(){
-		//console.log("usrActRender", this.state.usrActivities);
 		return( 
 				<ActivitiesList activities={this.state.usrActivities} user={this.props.user} showForm={false} />
 			)

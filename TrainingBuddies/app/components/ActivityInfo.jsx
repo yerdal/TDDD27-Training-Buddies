@@ -5,77 +5,60 @@ var ProfilePage = require("./PublicProfile.jsx");
 var ActivityInfo = React.createClass({
 
     getInitialState:function(){
-           for (var i = 0; i < this.props.info.participants.length; i++){
-                // is owner. should not be able to join, but delete.
-               if (this.props.user[0] == this.props.info.owner[0]){
-                  return{
-                    ableToJoin:false,
-                    ableToDelete:true,
-                    showProfile: this.props.initialClicked
-                  }
-               }
-               // already joined
-
-               else if (this.props.user[0] == this.props.info.participants[i][0]){
-                   return{
-                       ableToJoin:false,
-                       ableToDelete:false,
-                       showProfile:this.props.initialClicked
-                   };
-               }
-               else if(this.props.info.participants.length == this.props.info.numPart){ 
-
-                   return{ableToJoin:false,
-                        ableToDelete:false,
-                        showProfile:this.props.initialClicked
-                    };       
-                }
-           }
+        var ableToJoin = true;
+        var isFull = false;
+        var ableToDelete = false;
+        if (this.props.user[0] == this.props.info.owner[0])
+        {
+            ableToJoin = false;
+            ableToDelete = true;
+        }
+        if (this.props.info.participants.length == this.props.info.numPart)
+        {
+            isFull = true;
+        }
+        for (var i = 0; i < this.props.info.participants.length; i++){
+            if (this.props.user[0] == this.props.info.participants[i][0])
+            {
+                ableToJoin = false;
+                break;
+            }
+        }
 
        return{
-           ableToJoin:true,
-           ableToDelete:false,
+           isFull: isFull,
+           ableToJoin:ableToJoin,
+           ableToDelete:ableToDelete,
            showProfile:this.props.initialClicked
        };
     },
 
-    componentWillReceiveProps:function(nextProps){
-
-          this.setState({
-              ableToJoin:true,
-              ableToDelete:false,
-              showProfile: false
-          });
-        if ((nextProps.info.owner[0] == nextProps.user[0])){
-
-            this.setState({
-                ableToJoin:false,
-                ableToDelete:true,
-                showProfile: false
-            });
-            
+    componentDidMount:function(){
+        var ableToJoin = true;
+        var isFull = false;
+        var ableToDelete = false;
+        if (this.props.user[0] == this.props.info.owner[0])
+        {
+            ableToJoin = false;
+            ableToDelete = true;
         }
-        else if (nextProps.info.participants.length == nextProps.info.numPart){
-          this.setState({
-            ableToJoin:false,
-            ableToDelete:false,
-            showProfile:false
-          });
+        if (this.props.info.participants.length == this.props.info.numPart)
+        {
+            isFull = true;
         }
-        else {
-            for (var i = 0; i < nextProps.info.participants.length; i++){
-                // already joined
-                if (nextProps.user[0] == nextProps.info.participants[i][0])
-                {
-                    this.setState({
-                        ableToJoin:false,
-                        ableToDelete: false,
-                        showProfile: false
-                    });
-                }
+        for (var i = 0; i < this.props.info.participants.length; i++){
+            if (this.props.user[0] == this.props.info.participants[i][0])
+            {
+                ableToJoin = false;
+                break;
             }
         }
-
+        this.setState({
+            isFull: isFull,
+            ableToJoin: ableToJoin,
+            ableToDelete: ableToDelete,
+            showProfile: false
+        })
 
     },
 
@@ -85,24 +68,23 @@ var ActivityInfo = React.createClass({
     },
 
     joinActivity:function(e){
-
-        /* TODO 
-         * increase numPart when someone has joined
-         * Remove join button when participants are full.
-        */
-        // just delete and then add a new activity with the new participant. 
-        //might not be the most efficient solution.
-
-        //var modifiedActivity = $.extend(true, {}, this.props.info);
         e.preventDefault();
         this.props.info.participants.push(this.props.user);
         actions.editActivity(this.props.info);
-
+        var full;
+        if(this.props.info.participants.length == this.props.info.numPart){
+          full = true;
+        }
+        else{
+          full = false;
+        }
         this.setState({
-            ableToJoin:false,
-            ableToDelete:false,
-            showProfile: false
-        });
+          isFull: full,
+          ableToJoin: false,
+          ableToDelete: false,
+          showProfile: false
+        })
+
     },
     leaveActivity:function(e){
         // remove participant
@@ -115,13 +97,13 @@ var ActivityInfo = React.createClass({
         actions.editActivity(this.props.info);
 
         this.setState({
-            ableToJoin:true,
-            ableToDelete:false,
-            showProfile: false
-        });
+          isFull: false,
+          ableToJoin: true,
+          ableToDelete: false,
+          showProfile: false
+        })
     },
     onNameClick:function(){
-        //console.log("HE PÅ DIG");
         this.setState({
             showProfile:true
         })
@@ -132,18 +114,16 @@ var ActivityInfo = React.createClass({
 
     participantCount:function(){
       if(this.props.info.numPart == this.props.info.participants.length){
-          /*this.setState({
-            ableToJoin:false
-          })*/
-          return "Activity Full!";
+          return "Activity Full! " + ("(" + this.props.info.numPart + "/" + this.props.info.numPart + ")");
       }
-
-      return this.props.info.participants.length + ' of ' + this.props.info.numPart; 
+      return ((this.props.info.numPart - this.props.info.participants.length) + " places left "
+      + "(" + this.props.info.participants.length + "/" + this.props.info.numPart + ")" );
 
     },
 
     render:function(){
         return(
+
             <div className="activities">
                 <div className="panel panel-default">
                     
@@ -168,7 +148,7 @@ var ActivityInfo = React.createClass({
                             null : 
                             null
                         }
-                        {this.state.ableToJoin && !this.state.ableToDelete ?
+                        {this.state.ableToJoin && !this.state.ableToDelete && !this.state.isFull ?
                             <button className="btn" onClick ={this.joinActivity} type="submit">Join activity</button> :
                             null
                         }
@@ -177,10 +157,20 @@ var ActivityInfo = React.createClass({
                             null
 
                         }
-                        {!this.state.ableToJoin && !this.state.ableToDelete ? 
+                        {!this.state.ableToJoin && !this.state.ableToDelete && !this.state.isFull ? 
                             <button className="btn" onClick ={this.leaveActivity} type="submit">Leave activity</button> :
                             null
                         }
+                        {!this.state.ableToJoin && !this.state.ableToDelete && this.state.isFull ?
+                          <button className="btn" onClick ={this.leaveActivity} type="submit">Leave activity</button> :
+                          null
+                        }
+                        {this.state.ableToJoin && !this.state.ableToDelete && this.state.isFull ? 
+                          null:
+                          null
+                        }
+
+
 
 
                     </div>

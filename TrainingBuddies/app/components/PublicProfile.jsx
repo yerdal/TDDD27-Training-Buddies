@@ -3,7 +3,6 @@ var React = require("react");
 
 module.exports = React.createClass({
 	componentDidMount:function(){
-		console.log(this.props.profile);
 
 	},
 	render:function(){
