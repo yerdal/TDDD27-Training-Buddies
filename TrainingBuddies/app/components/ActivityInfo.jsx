@@ -84,7 +84,8 @@ var ActivityInfo = React.createClass({
         actions.deleteActivity(this.props.info);
     },
 
-    joinActivity:function(){
+    joinActivity:function(e){
+
         /* TODO 
          * increase numPart when someone has joined
          * Remove join button when participants are full.
@@ -93,19 +94,31 @@ var ActivityInfo = React.createClass({
         //might not be the most efficient solution.
 
         //var modifiedActivity = $.extend(true, {}, this.props.info);
+        e.preventDefault();
         this.props.info.participants.push(this.props.user);
         actions.editActivity(this.props.info);
 
+        this.setState({
+            ableToJoin:false,
+            ableToDelete:false,
+            showProfile: false
+        });
     },
-    leaveActivity:function(){
-        var modifiedActivity = $.extend(true, {}, this.props.info);
+    leaveActivity:function(e){
         // remove participant
+        e.preventDefault();
         for (var i = 0; i < this.props.info.participants.length; i++){
             if (this.props.user[0] == this.props.info.participants[i][0]){
                 this.props.info.participants.splice(i, 1);
             }
         }
         actions.editActivity(this.props.info);
+
+        this.setState({
+            ableToJoin:true,
+            ableToDelete:false,
+            showProfile: false
+        });
     },
     onNameClick:function(){
         //console.log("HE PÅ DIG");
