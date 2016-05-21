@@ -3,7 +3,7 @@ var Activity = require("../data/activity");
 var _ = require("underscore");
 
 var router = require("express").Router();
-router.route("/activities/:id?").get(getActivities).post(addActivity).delete(deleteActivity);
+router.route("/activities/:id?").get(getActivities).put(addActivity).delete(deleteActivity);
 
 function getActivities(req, res) {
     Activity.find(function (err, activities) {
