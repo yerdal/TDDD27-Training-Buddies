@@ -2,6 +2,7 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var ActivityPage = require("./activityPage.jsx");
 var ProfilePage = require("./components/profilePage.jsx");
+var AboutPage = require("./components/AboutPage.jsx");
 //var FacebookLogin = require("./components/FacebookLogin.jsx");
 var Router = require("react-router");
 
@@ -21,7 +22,8 @@ var LoginPage = React.createClass({
         return{
           showActivityPage:false,
           user:[val, name, lastname, email, picture, city, country, age],
-          showProfilePage:true
+          showProfilePage:true,
+          showAboutPage: false
         };
 
     },
@@ -30,32 +32,41 @@ var LoginPage = React.createClass({
         this.setState({
           showActivityPage: true,
           showProfilePage: false,
+          showAboutPage: false
         });
       },
     onHomeClick:function(){
       this.setState({
-        showActivityPage:false,
-        showProfilePage:true,
+        showActivityPage: false,
+        showProfilePage: true,
+        showAboutPage: false
       });
+    },
+    onAboutClick:function(){
+      this.setState({
+        showActivityPage: false,
+        showProfilePage: false,
+        showAboutPage: true
+      })
     },
 
     render: function() {
         return (
             
-                <div className ="page">
+                <div className="page greyBack">
                     <div className="menu">
                         <ul>
                             <li>
-                                <a className="homeBtn" onClick={this.onHomeClick}>Home</a>
+                                <a className="homeBtn headerButton" onClick={this.onHomeClick}>Home</a>
                             </li>
                             <li>
-                                <a className="activitiesBtn" onClick={this._onButtonClick}>Activities</a>
+                                <a className="activitiesBtn headerButton" onClick={this._onButtonClick}>Activities</a>
                             </li>
                             <li>
-                             <a className="aboutBtn">About</a>
+                             <a className="aboutBtn headerButton" onClick={this.onAboutClick}>About</a>
                              </li>
                              <li>
-                                <a href="/logout" class="btn btn-primary">Logout </a>
+                                <a href="/logout " className="headerButton">Logout </a>
                             </li>
                         </ul>
                     </div>
@@ -71,7 +82,13 @@ var LoginPage = React.createClass({
                                null
                               }
 
-                    </div>          
+                    </div>     
+                    <div id="aboutPage">
+                      {this.state.showAboutPage ? 
+                        <AboutPage/> :
+                        null
+                        }
+                    </div>     
 
                 </div>
           

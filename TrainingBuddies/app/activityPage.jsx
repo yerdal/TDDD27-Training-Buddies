@@ -20,7 +20,7 @@ module.exports = React.createClass({
 
 	render:function(){
 		return(
-			<div>
+			<div className="greyBack">
 				<InstantSearchBox activities={this.state.activities} user={this.props.user} />
 			</div>
 			)

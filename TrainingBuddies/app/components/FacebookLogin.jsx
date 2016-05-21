@@ -9,15 +9,11 @@ module.exports = React.createClass({
     render:function(){
         return(
 
-            <div id="loginSquare"> 
-                <h2>Please login with Facebook</h2>
-                <div id='social-login-button-facebook'>
-                    <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-                </div>
-                <div id="status">
-              </div>
+            <div className="loginSquare">
+                <h2>Login with <br/>
+                <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span>Facebook</a>
+                </h2>                                
             </div>
-     
-    )
+        )
   }
 });

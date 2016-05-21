@@ -13,34 +13,29 @@ module.exports = React.createClass({
 			date:"",
 			time:"",
 			postDate:"",
+			numPart:"",
 			participants:[]
 
 		}
 	},
 
 	currentDate:function(){
-		var d = new Date();
-    //minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
-    //hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours(),
-    //ampm = d.getHours() >= 12 ? 'pm' : 'am',
-    //months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    //days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-	//console.log("Posted: ", days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes);
-	var year = d.getFullYear();
-	var month = d.getUTCMonth()+1;
-	var day = d.getUTCDate();
+		var d = new Date(),
+		year = d.getFullYear(),
+		month = d.getUTCMonth()+1,
+		day = d.getUTCDate();
 
-	if(month<10){
-		//console.log("currDate", year + '-' + '0' + month + '-' + day);
-		var today = year + '-' + '0' + month + '-' + day;
-		return today;
-	}
-	else{
-		//console.log("currDate", year + '-' + month + '-' + day)
-		var today = year + '-' + month + '-' + day;
-		return today; 
-	}
-	
+		if(month<10){
+			//console.log("currDate", year + '-' + '0' + month + '-' + day);
+			var today = year + '-' + '0' + month + '-' + day;
+			return today;
+		}
+		else{
+			//console.log("currDate", year + '-' + month + '-' + day)
+			var today = year + '-' + month + '-' + day;
+			return today; 
+		}
+		
 	//return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes;
 	},
 
@@ -107,7 +102,7 @@ module.exports = React.createClass({
 	},
 
 	render:function(){
-
+		//console.log("numberOfPart", this.state);
 		return (
 			<div id="addActivity" className="col-md-4">
 				<form className="form" onSubmit={this.addActivity} ref="formRef">
@@ -129,6 +124,21 @@ module.exports = React.createClass({
 						value={this.state.address} onChange={this.handleInputChange} placeholder="Description" />
 					</div>
 
+					<div className="form-group">
+						<label className="control-label" htmlFor="dateHtml">Date</label>
+						<input type="date" name="date" min={this.currentDate()} value={this.state.date} 
+						onChange={this.handleInputChange}/>
+						<label className="control-label" htmlFor="timeHtml">Time</label>
+						<input type="time" name="time" min={this.currentTime()} value={this.state.time}
+						onChange={this.handleInputChange}/>
+					</div>
+
+					<div className="form-group" htmlFor="numPart">
+						<label className="control-label" htmlFor="numPart">Max number of participants:</label>
+						<input type="number" name="numPart" min="1" value={this.state.numPart} 
+						onChange={this.handleInputChange}/>
+					</div>
+
 					<div className="form-group" htmlFor="level">
 						<label className="control-label" htmlFor="level"> Choose level:</label>
 
@@ -140,17 +150,7 @@ module.exports = React.createClass({
 					</div>
 
 					<div className="form-group">
-						<label className="control-label" htmlFor="dateHtml">Date</label>
-						<input type="date" name="date" min={this.currentDate()} value={this.state.date} 
-						onChange={this.handleInputChange}/>
-						<label className="control-label" htmlFor="timeHtml">Time</label>
-						<input type="time" name="time" min={this.currentTime()} value={this.state.time}
-						onChange={this.handleInputChange}/>
-					</div>
-
-
-					<div className="form-group">
-						<button className="btn" type="submit" onClick={this.setOwner} >Add Activity</button>
+						<button className="btn btn-primary" type="submit" onClick={this.setOwner}>Add Activity</button>
 					</div>
 				</form>
 			</div>

@@ -20,14 +20,11 @@ var MainPage = React.createClass({
 
     render: function() {
         return (
-
-            <div className ="page">
-
-                <div className fbBox>
-                    {
-                        <FacebookLogin />
-                    }
-          		</div>
+             <div className="row">
+                <div className="col-lg-6 col-lg-offset-3 text-center"> 
+                  <h1 id="mainH1">Training Buddies</h1>
+                  <FacebookLogin />
+                </div>
             </div>
     	);
   	}
