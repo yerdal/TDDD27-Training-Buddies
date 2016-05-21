@@ -56,6 +56,10 @@ function ActivityStore() {
                 case "deleteActivity":
                     deleteActivity(payload.activity);
                     break;
+
+                case "editActivity":
+                    editActivity(payload.activity);
+                    break;
             }
         }
     });
