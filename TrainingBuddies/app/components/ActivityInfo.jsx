@@ -95,8 +95,7 @@ var ActivityInfo = React.createClass({
 
         var modifiedActivity = $.extend(true, {}, this.props.info);
         modifiedActivity.participants.push(this.props.user);
-        actions.deleteActivity(this.props.info);
-        actions.addActivity(modifiedActivity);
+        actions.deleteActivity(this.props.info).then(actions.addActivity(modifiedActivity));
 
     },
     leaveActivity:function(e){
@@ -108,8 +107,7 @@ var ActivityInfo = React.createClass({
                 modifiedActivity.participants.splice(i, 1);
             }
         }
-        actions.deleteActivity(this.props.info);
-        actions.addActivity(modifiedActivity);
+        actions.deleteActivity(this.props.info).then(actions.addActivity(modifiedActivity));
     },
     onNameClick:function(){
         //console.log("HE PÅ DIG");
