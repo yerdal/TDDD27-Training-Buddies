@@ -13,4 +13,10 @@ module.exports = {
 			type:"activity:deleteActivity"
 		});
 	},
+	editActivity:function(activity){
+		dispatcher.dispatch({
+			activity:activity,
+			type:"activity:editActivity"
+		})
+	}
 }

@@ -94,21 +94,18 @@ var ActivityInfo = React.createClass({
 
         //var modifiedActivity = $.extend(true, {}, this.props.info);
         this.props.info.participants.push(this.props.user);
-        /*modifiedActivity.participants.push(this.props.user);
-        actions.deleteActivity(this.props.info);
-        actions.addActivity(modifiedActivity);*/
+        actions.editActivity(this.props.info);
 
     },
     leaveActivity:function(){
-        //var modifiedActivity = $.extend(true, {}, this.props.info);
+        var modifiedActivity = $.extend(true, {}, this.props.info);
         // remove participant
         for (var i = 0; i < this.props.info.participants.length; i++){
             if (this.props.user[0] == this.props.info.participants[i][0]){
                 this.props.info.participants.splice(i, 1);
             }
         }
-       /* actions.deleteActivity(this.props.info);
-        actions.addActivity(modifiedActivity);*/
+        actions.editActivity(this.props.info);
     },
     onNameClick:function(){
         //console.log("HE PÅ DIG");

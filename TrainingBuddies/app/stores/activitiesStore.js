@@ -31,6 +31,12 @@ function ActivityStore() {
         });
     }
 
+    function editActivity(activity) {
+        activityService.editActivity(activity).then(function(res){
+            triggerListeners();
+        });
+    }
+
     function triggerListeners() {
         getActivities(function(res){
             listeners.forEach(function (listener) {
