@@ -6,6 +6,7 @@ module.exports = {
         'callbackURL'   : 'http://localhost:3000/auth/facebook/callback',
         //'callbackURL'   : 'https://lit-reef-24433.herokuapp.com/auth/facebook/callback'
         //'profileFields'   : ['id', 'name', 'email']
-
+        //eqdkxtq_valtchanovberg_1463844377@tfbnw.net
+        //einaryusuf
     }
 };

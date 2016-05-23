@@ -9,7 +9,7 @@ var ActivityInfo = React.createClass({
                 // is owner. should not be able to join, but delete.
                if (this.props.user[0] == this.props.info.owner[0]){
                   return{
-                    ableToJoin:this.checkIfFull(),
+                    ableToJoin:false,
                     ableToDelete:true,
                     showProfile: this.props.initialClicked
                   }
@@ -17,7 +17,7 @@ var ActivityInfo = React.createClass({
                // already joined
                else if (this.props.user[0] == this.props.info.participants[i][0]){
                    return{
-                       ableToJoin:this.checkIfFull(),
+                       ableToJoin:false,
                        ableToDelete:false,
                        showProfile:this.props.initialClicked
                    };
@@ -25,7 +25,7 @@ var ActivityInfo = React.createClass({
            }
 
        return{
-           ableToJoin:this.checkIfFull(),
+           ableToJoin:true,
            ableToDelete:false,
            showProfile:this.props.initialClicked
        };
@@ -34,40 +34,40 @@ var ActivityInfo = React.createClass({
     componentWillReceiveProps:function(nextProps){
 
           this.setState({
-              ableToJoin:this.checkIfFull(),
+              ableToJoin:true,
               ableToDelete:false,
               showProfile: false
           });
         if ((nextProps.info.owner[0] == nextProps.user[0])){
 
             this.setState({
-                ableToJoin:this.checkIfFull(),
+                ableToJoin:false,
                 ableToDelete:true,
                 showProfile: false
             });
             
         }
-        //maximum amount of participants reached.
-        /*else if(nextProps.info.participants.length == nextProps.info.numPart){
+        else if (nextProps.info.participants.length == nextProps.info.numPart){
           this.setState({
             ableToJoin:false,
-            ableToDelete:true,
+            ableToDelete:false,
             showProfile:false
           });
-        }*/
+        }
         else {
             for (var i = 0; i < nextProps.info.participants.length; i++){
                 // already joined
                 if (nextProps.user[0] == nextProps.info.participants[i][0])
                 {
                     this.setState({
-                        ableToJoin:this.checkIfFull(),
+                        ableToJoin:false,
                         ableToDelete: false,
                         showProfile: false
                     });
                 }
             }
         }
+
 
     },
 
@@ -77,31 +77,40 @@ var ActivityInfo = React.createClass({
     },
 
     joinActivity:function(e){
+
         /* TODO 
          * increase numPart when someone has joined
          * Remove join button when participants are full.
         */
         // just delete and then add a new activity with the new participant. 
         //might not be the most efficient solution.
+
+        //var modifiedActivity = $.extend(true, {}, this.props.info);
         e.preventDefault();
+        this.props.info.participants.push(this.props.user);
+        actions.editActivity(this.props.info);
 
-        var modifiedActivity = $.extend(true, {}, this.props.info);
-        modifiedActivity.participants.push(this.props.user);
-        actions.deleteActivity(this.props.info);
-        actions.addActivity(modifiedActivity);
-
+        this.setState({
+            ableToJoin:false,
+            ableToDelete:false,
+            showProfile: false
+        });
     },
     leaveActivity:function(e){
-        e.preventDefault();
-        var modifiedActivity = $.extend(true, {}, this.props.info);
         // remove participant
+        e.preventDefault();
         for (var i = 0; i < this.props.info.participants.length; i++){
             if (this.props.user[0] == this.props.info.participants[i][0]){
-                modifiedActivity.participants.splice(i, 1);
+                this.props.info.participants.splice(i, 1);
             }
         }
-        actions.deleteActivity(this.props.info);
-        actions.addActivity(modifiedActivity);
+        actions.editActivity(this.props.info);
+        
+        this.setState({
+            ableToJoin:true,
+            ableToDelete:false,
+            showProfile: false
+        });
     },
     onNameClick:function(){
         //console.log("HE PÅ DIG");
@@ -122,13 +131,6 @@ var ActivityInfo = React.createClass({
       }
       return this.props.info.participants.length + ' of ' + this.props.info.numPart; 
 
-    },
-
-    checkIfFull:function(){
-      if(this.props.info.participants.length == this.props.info.numPart){
-        return false;
-      }
-      return true;
     },
 
     render:function(){
