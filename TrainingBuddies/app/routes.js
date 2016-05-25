@@ -1,29 +1,22 @@
  module.exports = function(app, passport) {
 
-    // route for home page
+    // show home page
     app.get('/', function(req, res) {
        
         res.render('index.ejs');
     });
 
-    // route for login form
-    // route for processing the login form
-    // route for signup form
-    // route for processing the signup form
-
-    // route for showing the profile page
+    // show profile page
     app.get('/profile', isLoggedIn, function(req, res) {
-
-        res.render('profile.ejs', {
-            //markup: markup,
-            user : req.user // get the user out of session and pass to template
-        });
+        console.log(req.user.facebook);
+        if (req.user.facebook.token)
+        {
+                res.render('profile.ejs', {
+                user : JSON.stringify(req.user.facebook) // pass user to profile.ejs
+            });
+        }
     });
 
-    // =====================================
-    // FACEBOOK ROUTES =====================
-    // =====================================
-    // route for facebook authentication and login
     app.get('/connect/facebook', passport.authorize('facebook', { scope : ['email', 'user_location', 'user_birthday' ]}));
 
     // handle the callback after facebook has authorized the user
@@ -41,15 +34,8 @@
             successRedirect : '/profile',
             failureRedirect : '/'
         }));
-   /* app.get('/unlink/facebook', isLoggedIn, function(req, res) {
-            var user            = req.user;
-            user.facebook.token = undefined;
-            user.save(function(err) {
-                res.redirect('/profile');
-            });
-        });*/
 
-    // route for logging out
+    // logout
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
@@ -65,8 +51,6 @@ function isLoggedIn(req, res, next) {
         return next();
 
     }
-
-
     // if they aren't redirect them to the home page
     res.redirect('/');
 }

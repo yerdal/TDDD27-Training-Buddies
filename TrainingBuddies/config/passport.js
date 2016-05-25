@@ -81,7 +81,7 @@ module.exports = function(passport) {
                     newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
                     newUser.facebook.picture = profile.photos[0].value;
                     var str = profile._json.location.name;
-                    var strArray = str.split(',');
+                    var strArray = str.split(', ');
                     newUser.facebook.city = strArray[0];
                     newUser.facebook.country = strArray[1];
 

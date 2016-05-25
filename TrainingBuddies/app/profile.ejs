@@ -16,15 +16,8 @@
                
 
                    <!-- check if the user has this token (is the user authenticated with this social account) -->
-                   <% if (user.facebook.token) { %>
-                       <div id="usertoken" data-value=<%= user.facebook.token %> style="display:none;">...</div>
-                       <div id="name" data-value=<%= user.facebook.name %> style="display:none;">...</div>
-                       <div id="lastname" data-value=<%= user.facebook.lastname %> style="display:none;">...</div>
-                       <div id="email" data-value=<%= user.facebook.email %> style="display:none;">...</div>
-                       <div id="picture" data-value=<%= user.facebook.picture %> style="display:none;">...</div>
-                       <div id="city" data-value=<%= user.facebook.city %> style="display:none;">...</div>
-                       <div id="country" data-value=<%= user.facebook.country %> style="display:none;">...</div>
-                       <div id="age" data-value=<%= user.facebook.age %> style="display:none;">...</div>
+                   <% if (user) { %>
+                       <div id="user" data-value=<%= user %> style="display:none;"></div>
                        <script src="loginPage.js"></script>
                   
                    <% } else { %>

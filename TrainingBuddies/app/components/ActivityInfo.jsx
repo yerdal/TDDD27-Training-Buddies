@@ -9,7 +9,7 @@ var ActivityInfo = React.createClass({
         var ableToJoin = true;
         var isFull = false;
         var ableToDelete = false;
-        if (this.props.user[0] == this.props.info.owner[0])
+        if (this.props.user.token == this.props.info.owner.token)
         {
             ableToJoin = false;
             ableToDelete = true;
@@ -19,7 +19,7 @@ var ActivityInfo = React.createClass({
             isFull = true;
         }
         for (var i = 0; i < this.props.info.participants.length; i++){
-            if (this.props.user[0] == this.props.info.participants[i][0])
+            if (this.props.user.token == this.props.info.participants[i].token)
             {
                 ableToJoin = false;
                 break;
@@ -38,7 +38,7 @@ var ActivityInfo = React.createClass({
         var ableToJoin = true;
         var isFull = false;
         var ableToDelete = false;
-        if (this.props.user[0] == this.props.info.owner[0])
+        if (this.props.user.token == this.props.info.owner.token)
         {
             ableToJoin = false;
             ableToDelete = true;
@@ -48,7 +48,7 @@ var ActivityInfo = React.createClass({
             isFull = true;
         }
         for (var i = 0; i < this.props.info.participants.length; i++){
-            if (this.props.user[0] == this.props.info.participants[i][0])
+            if (this.props.user.token == this.props.info.participants[i].token)
             {
                 ableToJoin = false;
                 break;
@@ -91,7 +91,7 @@ var ActivityInfo = React.createClass({
         // remove participant
         e.preventDefault();
         for (var i = 0; i < this.props.info.participants.length; i++){
-            if (this.props.user[0] == this.props.info.participants[i][0]){
+            if (this.props.user.token == this.props.info.participants[i].token){
                 this.props.info.participants.splice(i, 1);
             }
         }
@@ -124,6 +124,7 @@ var ActivityInfo = React.createClass({
     },
 
     render:function(){
+      console.log(this.props.owner);
         return(
 
             <div className="activities">
@@ -135,7 +136,7 @@ var ActivityInfo = React.createClass({
                                   <span className="pull-right text-uppercase delete-button change-cursor" onClick={this.deleteActivity}>&times;</span> :
                                   null
                                 }
-                         <h4>{this.props.info.name} with <a className="change-cursor" clicked={this.state.showProfile} onClick={this.onNameClick}> {this.props.info.owner[1]} {this.props.info.owner[2]} </a></h4> 
+                         <h4>{this.props.info.name} with <a className="change-cursor" clicked={this.state.showProfile} onClick={this.onNameClick}> {this.props.info.owner.name} {this.props.info.owner.lastname} </a></h4> 
                          <h5>{this.props.info.location}</h5>
                          <h5>{this.props.info.time}, {this.props.info.date}</h5>
                                                

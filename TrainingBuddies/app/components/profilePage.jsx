@@ -2,7 +2,7 @@ var React = require('react');
 var UserActivities = require('./UserActivities.jsx');
 var ActivitiesStore = require('../stores/activitiesStore');
 var JoinedActivities = require('./JoinedActivities.jsx');
-
+var PublicProfile = require("./PublicProfile.jsx");
 module.exports = React.createClass({
 
 	getInitialState: function(){
@@ -11,7 +11,8 @@ module.exports = React.createClass({
 			user:this.props.user,
 			activities: [], 
 			usrActivities: [],
-			joinedActivites: []
+			joinedActivites: [],
+			showPublicProfile:{show:false, owner:[]}
 			};
 
 	},
@@ -31,7 +32,7 @@ module.exports = React.createClass({
 		var userAct = [];
 
 		for(var i = 0; i < this.state.activities.length; i++){
-			if (this.state.user[0] == this.state.activities[i].owner[0]){
+			if (this.state.user.token == this.state.activities[i].owner.token){
 				userAct.push(this.state.activities[i]);
 			}
 		}
@@ -45,8 +46,8 @@ module.exports = React.createClass({
 		for(var i = 0; i < this.state.activities.length; i++){
 			for(var j = 0; j < this.state.activities[i].participants.length; j++){
 
-				if((this.state.user[0] == this.state.activities[i].participants[j][0]) && 
-					(this.state.user[0] != this.state.activities[i].owner[0])){
+				if((this.state.user.token == this.state.activities[i].participants[j].token) && 
+					(this.state.user.token != this.state.activities[i].owner.token)){
 					joinedAct.push(this.state.activities[i]);
 				}	
 			}
@@ -56,6 +57,11 @@ module.exports = React.createClass({
 		});
 
 	},
+	onChildChanged:function(newState){
+		this.setState({
+		  showPublicProfile:newState
+		});
+	},
 
 	render: function(){
 		/* 
@@ -63,24 +69,28 @@ module.exports = React.createClass({
 		4:Profile picture , 5:City , 6:Country, 7:Age
 		*/
 		return(
-
-			<div className="row">
-				<div className="col-md-4">
-					<div id="infoBox">
-					<img className="img-circle img-responsive" src={this.state.user[4]} />
-						<h2> Name: {this.state.user[1]} {this.state.user[2]}</h2>
-						<h4> City: {this.state.user[5]}, {this.state.user[6]} </h4>
-						<h5> Age: {this.state.user[7]}</h5>
+			<div>
+			{!this.state.showPublicProfile.show ?
+				<div className="row">
+					<div className="col-md-4">
+						<div id="infoBox">
+						<img className="img-circle img-responsive" src={this.state.user.picture} />
+							<h2> Name: {this.state.user.name} {this.state.user.lastname}</h2>
+							<h4> City: {this.state.user.city}, {this.state.user.country} </h4>
+							<h5> Age: {this.state.user.age}</h5>
+						</div>
+					</div>
+					<div>
+						<h4>Your activities:</h4>
+						<UserActivities usrActivities={this.state.usrActivities} user={this.state.user}/>
+					</div>
+					<div>
+						<h4>Participated activities: </h4>
+						<JoinedActivities joinedActivities={this.state.joinedActivites} user={this.state.user}
+						initialClicked={this.state.showPublicProfile} callbackParent={this.onChildChanged} />
 					</div>
 				</div>
-				<div>
-					<h4>Your activities:</h4>
-					<UserActivities usrActivities={this.state.usrActivities} user={this.state.user}/>
-				</div>
-				<div>
-					<h4>Participated activities: </h4>
-					<JoinedActivities joinedActivities={this.state.joinedActivites} user={this.state.user} />
-				</div>
+			: <PublicProfile  profile={this.state.showPublicProfile.owner} /> }
 			</div>
 
 

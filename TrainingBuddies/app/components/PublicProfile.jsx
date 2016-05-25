@@ -9,11 +9,11 @@ module.exports = React.createClass({
 		return(
 			<div className="row">
 				<div className="col-md-4">
-					<img className="img-circle img-responsive" src={this.props.profile[4]} />
+					<img className="img-circle img-responsive" src={this.props.profile.picture} />
 					<div id="infoBox">
-						<h2> Name: {this.props.profile[1]} {this.props.profile[2]}</h2>
-						<h4> City: {this.props.profile[5]}, {this.props.profile[6]} </h4>
-						<h5> Age: {this.props.profile[7]}</h5>
+						<h2> Name: {this.props.profile.name} {this.props.profile.lastname}</h2>
+						<h4> City: {this.props.profile.city}, {this.props.profile.country} </h4>
+						<h5> Age: {this.props.profile.age}</h5>
 					</div>
 				</div>
 			</div>

@@ -5,7 +5,7 @@ var activitySchema = mongoose.Schema({
 	location: String,
 	description: String,
 	level: String,
-	owner: Array,
+	owner: Object,
 	date:String,
 	time:String,
 	postDate: String,
