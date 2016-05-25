@@ -41,11 +41,9 @@ module.exports = React.createClass({
 		this.setState({
 		  showPublicProfile:newState
 		});
-		console.log(newState);
 	},
 
 	render:function(){
-		console.log(this.state.showPublicProfile.show);
 			return(
 			<div>
 				{!this.state.showPublicProfile.show ?
