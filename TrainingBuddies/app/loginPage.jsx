@@ -9,19 +9,11 @@ var Router = require("react-router");
 var LoginPage = React.createClass({
 
     getInitialState: function(){
-        
-        var val = document.getElementById('usertoken').getAttribute('data-value');
-        var name = document.getElementById('name').getAttribute('data-value');
-        var email = document.getElementById('email').getAttribute('data-value');
-        var lastname = document.getElementById('lastname').getAttribute('data-value');
-        var picture = document.getElementById('picture').getAttribute('data-value');
-        var city = document.getElementById('city').getAttribute('data-value');
-        var country = document.getElementById('country').getAttribute('data-value');
-        var age = document.getElementById('age').getAttribute('data-value');
-        //console.log("location", location);
+        var user = document.getElementById('user').getAttribute('data-value');
+        var userObj = JSON.parse(user);
         return{
           showActivityPage:false,
-          user:[val, name, lastname, email, picture, city, country, age],
+          user:userObj,
           showProfilePage:true,
           showAboutPage: false
         };

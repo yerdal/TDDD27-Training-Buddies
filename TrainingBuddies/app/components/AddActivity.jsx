@@ -9,7 +9,7 @@ module.exports = React.createClass({
 			location:"",
 			description:"",
 			level:"",
-			owner:"",
+			owner:{},
 			date:"",
 			time:"",
 			postDate:"",
@@ -93,11 +93,13 @@ module.exports = React.createClass({
 	},
 	setOwner:function(){
 		var newParticipants = [];
+		console.log("user" + this.props.user);
 		newParticipants.push(this.props.user);
 		this.setState({
 			owner: this.props.user, 
 			participants:newParticipants
 		});
+		console.log(this.state.owner);
 
 	},
 

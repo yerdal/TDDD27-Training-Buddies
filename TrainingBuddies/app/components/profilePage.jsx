@@ -32,7 +32,7 @@ module.exports = React.createClass({
 		var userAct = [];
 
 		for(var i = 0; i < this.state.activities.length; i++){
-			if (this.state.user[0] == this.state.activities[i].owner[0]){
+			if (this.state.user.token == this.state.activities[i].owner.token){
 				userAct.push(this.state.activities[i]);
 			}
 		}
@@ -46,8 +46,8 @@ module.exports = React.createClass({
 		for(var i = 0; i < this.state.activities.length; i++){
 			for(var j = 0; j < this.state.activities[i].participants.length; j++){
 
-				if((this.state.user[0] == this.state.activities[i].participants[j][0]) && 
-					(this.state.user[0] != this.state.activities[i].owner[0])){
+				if((this.state.user.token == this.state.activities[i].participants[j].token) && 
+					(this.state.user.token != this.state.activities[i].owner.token)){
 					joinedAct.push(this.state.activities[i]);
 				}	
 			}
@@ -74,10 +74,10 @@ module.exports = React.createClass({
 				<div className="row">
 					<div className="col-md-4">
 						<div id="infoBox">
-						<img className="img-circle img-responsive" src={this.state.user[4]} />
-							<h2> Name: {this.state.user[1]} {this.state.user[2]}</h2>
-							<h4> City: {this.state.user[5]}, {this.state.user[6]} </h4>
-							<h5> Age: {this.state.user[7]}</h5>
+						<img className="img-circle img-responsive" src={this.state.user.picture} />
+							<h2> Name: {this.state.user.name} {this.state.user.lastname}</h2>
+							<h4> City: {this.state.user.city}, {this.state.user.country} </h4>
+							<h5> Age: {this.state.user.age}</h5>
 						</div>
 					</div>
 					<div>
