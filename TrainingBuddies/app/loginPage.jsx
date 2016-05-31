@@ -3,8 +3,7 @@ var ReactDOM = require("react-dom");
 var ActivityPage = require("./activityPage.jsx");
 var ProfilePage = require("./components/profilePage.jsx");
 var AboutPage = require("./components/AboutPage.jsx");
-//var FacebookLogin = require("./components/FacebookLogin.jsx");
-var Router = require("react-router");
+/* Shows profile page on default. Then click at activities or about button to show them. */
 
 var LoginPage = React.createClass({
 
@@ -20,7 +19,7 @@ var LoginPage = React.createClass({
 
     },
 
-    _onButtonClick:function() {
+    _onActivitiesClick:function() {
         this.setState({
           showActivityPage: true,
           showProfilePage: false,
@@ -52,7 +51,7 @@ var LoginPage = React.createClass({
                                 <a className="homeBtn headerButton" onClick={this.onHomeClick}>Home</a>
                             </li>
                             <li>
-                                <a className="activitiesBtn headerButton" onClick={this._onButtonClick}>Activities</a>
+                                <a className="activitiesBtn headerButton" onClick={this._onActivitiesClick}>Activities</a>
                             </li>
                             <li>
                              <a className="aboutBtn headerButton" onClick={this.onAboutClick}>About</a>
@@ -92,7 +91,6 @@ var LoginPage = React.createClass({
 module.exports = LoginPage;
 
 ReactDOM.render(
-    
         <LoginPage />,
   document.getElementById('container-fluid')
 );

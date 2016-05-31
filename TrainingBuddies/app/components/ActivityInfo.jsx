@@ -122,7 +122,6 @@ var ActivityInfo = React.createClass({
     },
 
     render:function(){
-      console.log(this.props.owner);
         return(
 
             <div className="activities">
@@ -170,9 +169,6 @@ var ActivityInfo = React.createClass({
                           null:
                           null
                         }
-
-
-
 
                     </div>
                 </div>

@@ -27,8 +27,7 @@ module.exports = React.createClass({
   },
 
    render:function(){
-    /* Have no idea why I cant just set usertoken and username directly as state in render*/
-
+    /* Can't understand why I have to set these variables for it to work...*/
         var us = this.props.user;
         var show = this.state.showPublicProfile;
         var callback = this.onChildChanged;
@@ -40,8 +39,6 @@ module.exports = React.createClass({
                       null
                     }
                 <div>
-                
-
                   <div id="activites" className="col-md-4">
                     {
                         this.props.activities.map(function(s,index){
@@ -51,10 +48,8 @@ module.exports = React.createClass({
                         })
 
                     }
-                    
                   </div>
-                  
-                  </div>
+                </div>
            </div>
          
            </div>

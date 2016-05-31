@@ -15,7 +15,6 @@ module.exports = React.createClass({
 			postDate:"",
 			numPart:"",
 			participants:[]
-
 		}
 	},
 
@@ -26,17 +25,13 @@ module.exports = React.createClass({
 		day = d.getUTCDate();
 
 		if(month<10){
-			//console.log("currDate", year + '-' + '0' + month + '-' + day);
 			var today = year + '-' + '0' + month + '-' + day;
 			return today;
 		}
 		else{
-			//console.log("currDate", year + '-' + month + '-' + day)
 			var today = year + '-' + month + '-' + day;
 			return today; 
 		}
-		
-	//return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes;
 	},
 
 	currentTime:function(){
@@ -51,14 +46,10 @@ module.exports = React.createClass({
 		chosenMonth = splitDate[1],
 		chosenDay = splitDate[2];
 
-		//console.log("chosenDate", chosenYear + ' ' + chosenMonth + ' ' + chosenDay);
-
 		var actDate = this.currentDate().split("-"),
 		actYear = actDate[0], 
 		actMonth = actDate[1],
 		actDay = actDate[2];
-
-		//console.log("actDate", actYear + ' ' + actMonth + ' ' + actDay);
 		
 		if(chosenDay == actDay){
 			if(chosenMonth == actMonth){
@@ -79,7 +70,7 @@ module.exports = React.createClass({
 		 });
 		ReactDOM.findDOMNode(this.refs["descriptionInput"]).value = "";
 	},
-
+	// handles input change for all input text fields
 	handleInputChange:function(e){
 		e.preventDefault();
 		var name = e.target.name;
@@ -93,14 +84,11 @@ module.exports = React.createClass({
 	},
 	setOwner:function(){
 		var newParticipants = [];
-		console.log("user" + this.props.user);
-		newParticipants.push(this.props.user);
+ 		newParticipants.push(this.props.user);
 		this.setState({
 			owner: this.props.user, 
 			participants:newParticipants
 		});
-		console.log(this.state.owner);
-
 	},
 
 	render:function(){
