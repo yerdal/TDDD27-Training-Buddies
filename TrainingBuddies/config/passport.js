@@ -67,10 +67,18 @@ module.exports = function(passport) {
                     newUser.facebook.lastname = profile.name.familyName;
                     newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
                     newUser.facebook.picture = profile.photos[0].value;
-                    var str = profile._json.location.name;
-                    var strArray = str.split(', ');
-                    newUser.facebook.city = strArray[0];
-                    newUser.facebook.country = strArray[1];
+                    if (profile._json.location !== undefined)
+                    {
+                        var str = profile._json.location.name;
+                        var strArray = str.split(', ');
+                        newUser.facebook.city = strArray[0];
+                        newUser.facebook.country = strArray[1];
+                    }
+                    else
+                    {
+                        newUser.facebook.city = "";
+                        newUser.facebook.country = "";
+                    }
 
                     newUser.facebook.age = calcAge(profile._json.birthday);
 

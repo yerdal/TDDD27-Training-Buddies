@@ -16,15 +16,6 @@
              });
          }
      });
-
-     app.get('/connect/facebook', passport.authorize('facebook', { scope : ['email', 'user_location', 'user_birthday' ]}));
-
-     // handle the callback after facebook has authorized the user
-     app.get('/connect/facebook/callback',
-         passport.authorize('facebook', {
-             successRedirect : '/profile',
-             failureRedirect : '/'
-         }));
      
      app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email', 'user_location', 'user_birthday'] }));
 
