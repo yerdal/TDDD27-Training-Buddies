@@ -11,7 +11,7 @@ var session = require("express-session");
 console.log(process.env.MONGODB_URI);
 var connectString = "mongodb://localhost:27017/trainingbuddies";
 
-//require("../config/passport")(passport);
+
 //heroku or local?
 mongoose.connect(process.env.MONGODB_URI || connectString);
 
@@ -23,7 +23,6 @@ var server = http.createServer(app);
 // heroku or local?
 var port = process.env.PORT || 3000;
 
-
 app.set('views', path.join(__dirname,"../app/dist"));
 app.set('view engine','ejs');
 
@@ -31,7 +30,7 @@ app.use(session({ secret: 'hejduhej' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-/*Routes*/
+// login routes
 require('../app/routes.js')(app, passport); 
 
 

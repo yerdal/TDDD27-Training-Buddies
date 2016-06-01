@@ -1,8 +1,8 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-var ActivityPage = require("./activityPage.jsx");
-var ProfilePage = require("./components/profilePage.jsx");
-var AboutPage = require("./components/AboutPage.jsx");
+var ActivityPage = require("./ActivityPage.jsx");
+var ProfilePage = require("./ProfilePage.jsx");
+var AboutPage = require("./AboutPage.jsx");
 /* Shows profile page on default. Then click at activities or about button to show them. */
 
 var LoginPage = React.createClass({
