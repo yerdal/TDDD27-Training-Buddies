@@ -5,8 +5,10 @@ module.exports = {
         'clientSecret'  : '9c53b80a9ad15b1a0928fa7df1e6c288',
         'callbackURL'   : 'http://localhost:3000/auth/facebook/callback',
         //'callbackURL'   : 'https://lit-reef-24433.herokuapp.com/auth/facebook/callback'
+
         //'profileFields'   : ['id', 'name', 'email']
         //eqdkxtq_valtchanovberg_1463844377@tfbnw.net
         //einaryusuf
+
     }
 };

@@ -2,10 +2,10 @@ var $ = require("jquery");
 var promise = require("es6-promise");
 
 var resourceUrl = "/api/activities";
-
+// REST api calls
 module.exports = {
 	addActivity: function(activity){
-		var Promise = promise.Promise;
+		var Promise = promise.Promise;		
 		return new Promise(function(resolve, reject){
 			$.ajax({
 				url: resourceUrl,
@@ -36,7 +36,7 @@ module.exports = {
 		var Promise = promise.Promise;
 		return new Promise(function(resolve, reject){
 			$.ajax({
-				url: resourceUrl + "/" + activity._id,
+				url: resourceUrl + "/" + activity._id, // uses the optional route (id)
 				method: "DELETE",
 				dataType: "json",
 				success: resolve,
@@ -49,7 +49,7 @@ module.exports = {
 		var Promise = promise.Promise;
 		return new Promise(function(resolve, reject){
 			$.ajax({
-				url: resourceUrl + "/" + activity._id,
+				url: resourceUrl + "/" + activity._id, // uses the optional route (id)
 				data: JSON.stringify(activity),
 				method: "PUT",
 				dataType: "json",

@@ -14,14 +14,14 @@
     
     <div class="col-sm-6">
                
-
                    <!-- check if the user has this token (is the user authenticated with this social account) -->
-                   <% if (user) { %>
-                       <div id="user" data-value=<%= user %> style="display:none;"></div>
+        <% if (user) { %>
+
+                   <div id="user" data-value=<%= user %> style="display:none;"></div>
                        <script src="loginPage.js"></script>
                   
                    <% } else { %>
-                       <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
+                       
                    <% } %>
 
               

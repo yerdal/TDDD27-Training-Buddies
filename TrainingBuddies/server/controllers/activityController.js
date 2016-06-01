@@ -1,8 +1,9 @@
 var mongoose = require("mongoose");
 var Activity = require("../data/activity");
 var _ = require("underscore");
-
+// express routers
 var router = require("express").Router();
+// ":id?" makes it an optional route. (used for edit and delete)
 router.route("/activities/:id?").get(getActivities).post(addActivity).delete(deleteActivity).put(editActivity);
 
 function getActivities(req, res) {
@@ -26,7 +27,6 @@ function addActivity(req, res) {
 
 function deleteActivity(req, res) {
     var id = req.params.id;
-    console.log(id);
     Activity.remove({ _id: id }, function (err, removed) {
         if (err)
             res.send(err)

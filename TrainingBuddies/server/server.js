@@ -7,7 +7,6 @@ var path = require("path");
 var passport = require("passport");
 var pass = require('../config/passport.js')(passport);
 var session = require("express-session");
-var flash = require("connect-flash");
 
 console.log(process.env.MONGODB_URI);
 var connectString = "mongodb://localhost:27017/trainingbuddies";
@@ -33,7 +32,6 @@ app.engine('jsx', require('express-react-views').createEngine());
 app.use(session({ secret: 'hejduhej' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
 
 /*Routes*/
 require('../app/routes.js')(app, passport); 
