@@ -12,22 +12,20 @@ console.log(process.env.MONGODB_URI);
 var connectString = "mongodb://localhost:27017/trainingbuddies";
 
 //require("../config/passport")(passport);
-
+//heroku or local?
 mongoose.connect(process.env.MONGODB_URI || connectString);
+
 app.use(express.static(path.join(__dirname,"../app/dist")));
 app.use(bodyparser.json());
 var activityController = require("./controllers/activityController");
 app.use("/api", activityController);
 var server = http.createServer(app);
-
+// heroku or local?
 var port = process.env.PORT || 3000;
-console.log("PORT: " + port);
-console.log("URI" + process.env.MONGOLAB_URI)
 
 
 app.set('views', path.join(__dirname,"../app/dist"));
 app.set('view engine','ejs');
-app.engine('jsx', require('express-react-views').createEngine());
 
 app.use(session({ secret: 'hejduhej' })); // session secret
 app.use(passport.initialize());
