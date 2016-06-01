@@ -1,47 +1,56 @@
- module.exports = function(app, passport) {
+  module.exports = function(app, passport) {
 
-    // show home page
-    app.get('/', function(req, res) {
-       
-        res.render('index.ejs');
-    });
+     // show home page
+     app.get('/', function(req, res) {
+        
+         res.render('index.ejs');
+     });
 
-    // show profile page
-    app.get('/profile', isLoggedIn, function(req, res) {
-        console.log(req.user.facebook);
-        if (req.user.facebook.token)
-        {
-                res.render('profile.ejs', {
-                user : JSON.stringify(req.user.facebook) // pass user to profile.ejs
-            });
-        }
-    });
-    
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email', 'user_location', 'user_birthday'] }));
+     // show profile page
+     app.get('/profile', isLoggedIn, function(req, res) {
+         console.log(req.user.facebook);
+         if (req.user.facebook.token)
+         {
+                 res.render('profile.ejs', {
+                 user : JSON.stringify(req.user.facebook) // pass user to profile.ejs
+             });
+         }
+     });
 
-    // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect : '/profile',
-            failureRedirect : '/'
-        }));
+     app.get('/connect/facebook', passport.authorize('facebook', { scope : ['email', 'user_location', 'user_birthday' ]}));
 
-    // logout
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
-};
+     // handle the callback after facebook has authorized the user
+     app.get('/connect/facebook/callback',
+         passport.authorize('facebook', {
+             successRedirect : '/profile',
+             failureRedirect : '/'
+         }));
+     
+     app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email', 'user_location', 'user_birthday'] }));
 
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
+     // handle the callback after facebook has authenticated the user
+     app.get('/auth/facebook/callback',
+         passport.authenticate('facebook', {
+             successRedirect : '/profile',
+             failureRedirect : '/'
+         }));
 
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-    {
-        return next();
+     // logout
+     app.get('/logout', function(req, res) {
+         req.logout();
+         res.redirect('/');
+     });
+ };
 
-    }
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-}
+ // route middleware to make sure a user is logged in
+ function isLoggedIn(req, res, next) {
+
+     // if user is authenticated in the session, carry on
+     if (req.isAuthenticated())
+     {
+         return next();
+
+     }
+     // if they aren't redirect them to the home page
+     res.redirect('/');
+ }
