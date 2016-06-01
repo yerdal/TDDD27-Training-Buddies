@@ -1,8 +1,8 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-var ActivitiesList = require("./components/ActivitiesList.jsx");
-var ActivitiesStore = require("./stores/activitiesStore");
-var InstantSearchBox = require("./components/InstantSearchBox.jsx");
+var ActivitiesList = require("./ActivitiesList.jsx");
+var ActivitiesStore = require("../stores/activitiesStore");
+var InstantSearchBox = require("./InstantSearchBox.jsx");
 module.exports = React.createClass({
 
 	getInitialState: function(){
