@@ -14,7 +14,6 @@ function ActivityStore() {
 
     function getActivities(cb) {
         activityService.getActivities().then(function(res){
-            // cb = getSchoolsCallback as in main.jsx
             cb(res);
         });
     }

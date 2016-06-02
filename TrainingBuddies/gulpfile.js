@@ -6,21 +6,10 @@ var react = require("gulp-react");
 var babel = require("gulp-babel");
 var ejs = require("gulp-ejs");
 
-/*gulp.task("bundle", function () {
-
-    return browserify({
-        entries: "./app/main.jsx",
-        debug: true
-    }).transform(reactify)
-        .bundle()
-        .pipe(source("main.js"))
-        .pipe(gulp.dest("app/dist"))
-});*/
-
 gulp.task("bundle", function(){
     console.log("hej");
     browserify([
-            "./app/main.jsx"
+            "app/main.jsx"
         ]).transform(reactify)
         .bundle()
         .pipe(source("main.js"))
@@ -28,7 +17,7 @@ gulp.task("bundle", function(){
 
 
     browserify([
-            "./app/loginPage.jsx"
+            "app/loginPage.jsx"
         ]).transform(reactify)
         .bundle()
         .pipe(source("loginPage.js"))

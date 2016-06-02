@@ -1,12 +1,11 @@
-// load all the things we need
 
 var FacebookStrategy = require('passport-facebook').Strategy;
 
-// load up the user model
+// load user model
 var User       = require('../server/data/user');
-//console.log(User);
-// load the auth variables
+
 var configAuth = require('./auth');
+
 module.exports = function(passport) {
 
     // used to serialize the user for the session
@@ -21,8 +20,6 @@ module.exports = function(passport) {
         });
     });
     
-    // code for login (use('local-login', new LocalStategy))
-    // code for signup (use('local-signup', new LocalStategy))
     var calcAge = function(birthday){
         var today = new Date();
         var birthDate = new Date(birthday);
@@ -34,34 +31,25 @@ module.exports = function(passport) {
         return age;
 
     }
-    // =========================================================================
-    // FACEBOOK ================================================================
-    // =========================================================================
+    // facebook login
     passport.use(new FacebookStrategy({
 
-        // pull in our app id and secret from our auth.js file
+        // get some auth variables
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
         profileFields   : ['id', 'name', 'email', 'picture.type(large)', 'location', 'birthday']
-        //passReqToCallback : true
-
     },
 
-    // facebook will send back the token and profile
+    // facebook gives us token and profile
     function(token, refreshToken, profile, done) {
 
-        // asynchronous
         process.nextTick(function() {
 
-            // find the user in the database based on their facebook id
+            // find the user in the database
             User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
-
-                // if there is an error, stop everything and return that
-                // ie an error connecting to the database
                 if (err)
                 {
-                    console.log("HAAA");
                     return done(err);
                 }
 
@@ -70,24 +58,31 @@ module.exports = function(passport) {
                     return done(null, user); // user found, return that user
                 } 
                 else {         
-                    //console.log("Profile PASSPORT", profile);           
-                    // if there is no user found with that facebook id, create them
+                    // if no user, create user
                     var newUser            = new User();
-                    // set all of the facebook information in our user model
-                    newUser.facebook.id    = profile.id; // set the users facebook id                   
-                    newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
-                    newUser.facebook.name  = profile.name.givenName;// + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+                    // set the user model variables
+                    newUser.facebook.id    = profile.id;                  
+                    newUser.facebook.token = token;                  
+                    newUser.facebook.name  = profile.name.givenName;
                     newUser.facebook.lastname = profile.name.familyName;
                     newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
                     newUser.facebook.picture = profile.photos[0].value;
-                    var str = profile._json.location.name;
-                    var strArray = str.split(', ');
-                    newUser.facebook.city = strArray[0];
-                    newUser.facebook.country = strArray[1];
+                    if (profile._json.location !== undefined)
+                    {
+                        var str = profile._json.location.name;
+                        var strArray = str.split(', ');
+                        newUser.facebook.city = strArray[0];
+                        newUser.facebook.country = strArray[1];
+                    }
+                    else
+                    {
+                        newUser.facebook.city = "";
+                        newUser.facebook.country = "";
+                    }
 
                     newUser.facebook.age = calcAge(profile._json.birthday);
 
-                    // save our user to the database
+                    // save user to db
                     newUser.save(function(err) {
                         if (err)
                             throw err;

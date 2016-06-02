@@ -4,7 +4,12 @@ var _ = require("underscore");
 // express routers
 var router = require("express").Router();
 // ":id?" makes it an optional route. (used for edit and delete)
-router.route("/activities/:id?").get(getActivities).post(addActivity).delete(deleteActivity).put(editActivity);
+// add get, post, delete and put functions
+router.route("/activities/:id?")
+.get(getActivities)
+.post(addActivity)
+.delete(deleteActivity)
+.put(editActivity);
 
 function getActivities(req, res) {
     Activity.find(function (err, activities) {
