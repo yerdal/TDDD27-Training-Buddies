@@ -1,7 +1,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 var actions = require("../actions/ActivityActions");
-
+// Component with a form to add activity. Triggers action if add activity button click.
 module.exports = React.createClass({
 	getInitialState:function(){
 		return {

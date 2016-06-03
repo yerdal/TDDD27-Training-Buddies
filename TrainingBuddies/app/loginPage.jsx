@@ -4,7 +4,7 @@ var ActivityPage = require("./activityPage.jsx");
 var ProfilePage = require("./components/profilePage.jsx");
 var AboutPage = require("./components/AboutPage.jsx");
 /* Rendered when user has logged in.
-Shows profile page on default. Then click at activities or about button to show them. */
+Shows profile page on default. Then click at activities, about or logout button. */
 
 var LoginPage = React.createClass({
 
