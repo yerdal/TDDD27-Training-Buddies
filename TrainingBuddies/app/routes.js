@@ -8,7 +8,6 @@
 
      // show loginpage, (connected with loginPage.jsx)
      app.get('/profile', isLoggedIn, function(req, res) {
-         console.log(req.user.facebook);
          if (req.user.facebook.token)
          {
                  res.render('profile.ejs', {
