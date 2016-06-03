@@ -11,6 +11,7 @@ isFull: Activity is full, you can't join, only leave, if you're a participant.
 */
 
     getInitialState:function(){
+
         var ableToJoin = true;
         var isFull = false;
         var ableToDelete = false;
@@ -95,7 +96,7 @@ isFull: Activity is full, you can't join, only leave, if you're a participant.
             }
         }
         actions.editActivity(this.props.info);
-
+        
         this.setState({
           isFull: false,
           ableToJoin: true,
@@ -116,6 +117,7 @@ isFull: Activity is full, you can't join, only leave, if you're a participant.
       if(this.props.info.numPart == this.props.info.participants.length){
           return "Activity Full! " + ("(" + this.props.info.numPart + "/" + this.props.info.numPart + ")");
       }
+
       return ((this.props.info.numPart - this.props.info.participants.length) + " places left "
       + "(" + this.props.info.participants.length + "/" + this.props.info.numPart + ")" );
 
