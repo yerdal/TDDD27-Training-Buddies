@@ -1,8 +1,6 @@
 var dispatcher = require("../dispatcher");
 var activityService = require("../services/activityService");
 
-
-
 function ActivityStore() {
     var listeners = [];
 

@@ -1,5 +1,4 @@
 var Guid = require("guid");
-
 var listeners = {};
 
 function dispatch(payload){

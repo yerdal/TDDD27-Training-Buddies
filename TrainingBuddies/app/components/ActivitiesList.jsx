@@ -1,6 +1,10 @@
 var React = require("react");
 var ActivityInfo = require("./ActivityInfo.jsx")
 var AddActivity = require("./AddActivity.jsx");
+/* The list with activities and also the Add activity part with the input fields.
+showForm determines whether we should show the add activity form.
+showPublicProfile will be true if the user has clicked on a name in the activites list,
+which means we should display the profile of that user. */
 
 module.exports = React.createClass({
 
@@ -19,6 +23,7 @@ module.exports = React.createClass({
       });
 
   },
+  // receives data from activityInfo. If a user has clicked on a name, should show profile page.
   onChildChanged:function(newState){
       this.setState({
         showPublicProfile:this.props.initialClicked
@@ -27,7 +32,7 @@ module.exports = React.createClass({
   },
 
    render:function(){
-    /* Can't understand why I have to set these variables for it to work...*/
+    // Can't understand why I have to set these variables for it to work...weird.
         var us = this.props.user;
         var show = this.state.showPublicProfile;
         var callback = this.onChildChanged;

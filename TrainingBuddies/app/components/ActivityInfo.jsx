@@ -3,23 +3,26 @@ var actions = require("../actions/ActivityActions");
 var $ = require("jquery");
 var ProfilePage = require("./PublicProfile.jsx");
 var ActivityInfo = React.createClass({
+/* Info about each activity. ableToJoin, ableToDelete, isFull, showProfile are used
+to determine what should be rendered.
+ableToJoin: Able to join --> you're not the owner and have not previously joined.
+ableToDelete: able to delete --> you are the owner and can therefore delete the activity.
+isFull: Activity is full, you can't join, only leave, if you're a participant.
+*/
 
     getInitialState:function(){
         var ableToJoin = true;
         var isFull = false;
         var ableToDelete = false;
-        if (this.props.user.token == this.props.info.owner.token)
-        {
+        if (this.props.user.token == this.props.info.owner.token) {
             ableToJoin = false;
             ableToDelete = true;
         }
-        if (this.props.info.participants.length == this.props.info.numPart)
-        {
+        if (this.props.info.participants.length == this.props.info.numPart) {
             isFull = true;
         }
         for (var i = 0; i < this.props.info.participants.length; i++){
-            if (this.props.user.token == this.props.info.participants[i].token)
-            {
+            if (this.props.user.token == this.props.info.participants[i].token) {
                 ableToJoin = false;
                 break;
             }
@@ -37,18 +40,15 @@ var ActivityInfo = React.createClass({
         var ableToJoin = true;
         var isFull = false;
         var ableToDelete = false;
-        if (this.props.user.token == this.props.info.owner.token)
-        {
+        if (this.props.user.token == this.props.info.owner.token) {
             ableToJoin = false;
             ableToDelete = true;
         }
-        if (this.props.info.participants.length == this.props.info.numPart)
-        {
+        if (this.props.info.participants.length == this.props.info.numPart) {
             isFull = true;
         }
-        for (var i = 0; i < this.props.info.participants.length; i++){
-            if (this.props.user.token == this.props.info.participants[i].token)
-            {
+        for (var i = 0; i < this.props.info.participants.length; i++) {
+            if (this.props.user.token == this.props.info.participants[i].token) {
                 ableToJoin = false;
                 break;
             }
@@ -72,10 +72,10 @@ var ActivityInfo = React.createClass({
         this.props.info.participants.push(this.props.user);
         actions.editActivity(this.props.info);
         var full;
-        if(this.props.info.participants.length == this.props.info.numPart){
+        if(this.props.info.participants.length == this.props.info.numPart) {
           full = true;
         }
-        else{
+        else {
           full = false;
         }
         this.setState({
@@ -89,8 +89,8 @@ var ActivityInfo = React.createClass({
     leaveActivity:function(e){
         // remove participant
         e.preventDefault();
-        for (var i = 0; i < this.props.info.participants.length; i++){
-            if (this.props.user.token == this.props.info.participants[i].token){
+        for (var i = 0; i < this.props.info.participants.length; i++) {
+            if (this.props.user.token == this.props.info.participants[i].token) {
                 this.props.info.participants.splice(i, 1);
             }
         }
@@ -103,7 +103,7 @@ var ActivityInfo = React.createClass({
           showProfile: false
         })
     },
-    onNameClick:function(){
+    onNameClick:function() {
         this.setState({
             showProfile:true
         })
@@ -112,7 +112,7 @@ var ActivityInfo = React.createClass({
             owner: this.props.info.owner});
     },
 
-    participantCount:function(){
+    participantCount:function() {
       if(this.props.info.numPart == this.props.info.participants.length){
           return "Activity Full! " + ("(" + this.props.info.numPart + "/" + this.props.info.numPart + ")");
       }

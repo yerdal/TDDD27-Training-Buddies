@@ -2,6 +2,7 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var FacebookLogin = require("./components/FacebookLogin.jsx");
 var Router = require("react-router");
+// start page with facebook login component.
 var MainPage = React.createClass({
 
     render: function() {

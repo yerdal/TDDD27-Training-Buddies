@@ -33,5 +33,5 @@ gulp.task("copy", ["bundle"], function () {
 
 
 gulp.task("default",["copy"],function(){
-   console.log("Gulp completed..."); 
+   console.log("Gulp completed!"); 
 });

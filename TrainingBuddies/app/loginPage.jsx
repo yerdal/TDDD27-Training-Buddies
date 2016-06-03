@@ -3,7 +3,8 @@ var ReactDOM = require("react-dom");
 var ActivityPage = require("./activityPage.jsx");
 var ProfilePage = require("./components/profilePage.jsx");
 var AboutPage = require("./components/AboutPage.jsx");
-/* Shows profile page on default. Then click at activities or about button to show them. */
+/* Rendered when user has logged in.
+Shows profile page on default. Then click at activities or about button to show them. */
 
 var LoginPage = React.createClass({
 
@@ -19,7 +20,7 @@ var LoginPage = React.createClass({
 
     },
 
-    _onActivitiesClick:function() {
+    onActivitiesClick:function() {
         this.setState({
           showActivityPage: true,
           showProfilePage: false,
@@ -51,7 +52,7 @@ var LoginPage = React.createClass({
                                 <a className="homeBtn headerButton" onClick={this.onHomeClick}>Home</a>
                             </li>
                             <li>
-                                <a className="activitiesBtn headerButton" onClick={this._onActivitiesClick}>Activities</a>
+                                <a className="activitiesBtn headerButton" onClick={this.onActivitiesClick}>Activities</a>
                             </li>
                             <li>
                              <a className="aboutBtn headerButton" onClick={this.onAboutClick}>About</a>

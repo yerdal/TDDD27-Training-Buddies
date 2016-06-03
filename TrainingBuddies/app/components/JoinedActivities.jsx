@@ -1,6 +1,9 @@
 var React = require('react');
 var ActivitiesList = require("./ActivitiesList.jsx");
 var ActivitiesStore = require("../stores/activitiesStore");
+/* The joined activities list on the profile page
+ If name has been clicked (showPublicProfile==true), callback to profilePage.jsx
+*/
 module.exports = React.createClass({
 
 	getInitialState: function(){

@@ -1,12 +1,12 @@
   module.exports = function(app, passport) {
 
-     // show home page
+     // show home page (connected with main.jsx)
      app.get('/', function(req, res) {
         
          res.render('index.ejs');
      });
 
-     // show profile page
+     // show loginpage, (connected with loginPage.jsx)
      app.get('/profile', isLoggedIn, function(req, res) {
          console.log(req.user.facebook);
          if (req.user.facebook.token)
@@ -26,7 +26,7 @@
              failureRedirect : '/'
          }));
 
-     // logout
+     // logout, redirect to first page
      app.get('/logout', function(req, res) {
          req.logout();
          res.redirect('/');

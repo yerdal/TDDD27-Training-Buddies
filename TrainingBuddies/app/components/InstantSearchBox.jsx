@@ -2,6 +2,7 @@ var React = require("react");
 var SearchActivity = require("./SearchActivity.jsx");
 var ActivitiesList = require("./ActivitiesList.jsx");
 var PublicProfile = require("./PublicProfile.jsx");
+/* The search box. Also renders the activity list, based on the search. */
 module.exports = React.createClass({
 
 	getInitialState:function(){
@@ -13,7 +14,7 @@ module.exports = React.createClass({
 
 	},
 
-	componentWillReceiveProps:function(nextProps){
+	componentWillReceiveProps:function(nextProps) {
 		this.setState({
 			filteredData:nextProps.activities,
 		});

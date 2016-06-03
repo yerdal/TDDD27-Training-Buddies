@@ -2,10 +2,6 @@ var React = require("react");
 
 module.exports = React.createClass({
 
-    componentWillUnmount:function(){
-
-    },
-
     render:function(){
         return(
 

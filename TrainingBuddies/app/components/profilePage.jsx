@@ -3,6 +3,8 @@ var UserActivities = require('./UserActivities.jsx');
 var ActivitiesStore = require('../stores/activitiesStore');
 var JoinedActivities = require('./JoinedActivities.jsx');
 var PublicProfile = require("./PublicProfile.jsx");
+// The profile page containing user info, participated activites list and user activites list.
+// If user has clicked on a name, showPublicProfile == true --> render profile.
 module.exports = React.createClass({
 
 	getInitialState: function(){
@@ -45,7 +47,6 @@ module.exports = React.createClass({
 
 		for(var i = 0; i < this.state.activities.length; i++){
 			for(var j = 0; j < this.state.activities[i].participants.length; j++){
-
 				if((this.state.user.token == this.state.activities[i].participants[j].token) && 
 					(this.state.user.token != this.state.activities[i].owner.token)){
 					joinedAct.push(this.state.activities[i]);
@@ -64,10 +65,7 @@ module.exports = React.createClass({
 	},
 
 	render: function(){
-		/* 
-		0:ID, 1:Firstname , 2:Lastname , 3:Email
-		4:Profile picture , 5:City , 6:Country, 7:Age
-		*/
+
 		return(
 			<div>
 			{!this.state.showPublicProfile.show ?

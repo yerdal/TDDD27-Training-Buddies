@@ -24,11 +24,11 @@ module.exports = React.createClass({
 		month = d.getUTCMonth()+1,
 		day = d.getUTCDate();
 
-		if(month<10){
+		if(month<10) {
 			var today = year + '-' + '0' + month + '-' + day;
 			return today;
 		}
-		else{
+		else {
 			var today = year + '-' + month + '-' + day;
 			return today; 
 		}
@@ -61,7 +61,7 @@ module.exports = React.createClass({
 		return "";
 	},
 
-	addActivity:function(e){		
+	addActivity:function(e) {		
 		e.preventDefault();
 		actions.addActivity(this.state);
 		this.setState({
@@ -71,18 +71,18 @@ module.exports = React.createClass({
 		ReactDOM.findDOMNode(this.refs["descriptionInput"]).value = "";
 	},
 	// handles input change for all input text fields
-	handleInputChange:function(e){
+	handleInputChange:function(e) {
 		e.preventDefault();
 		var name = e.target.name;
 		var state = this.state;
 		state[name] = e.target.value;
 		this.setState(state);
 	},
-	selectLevel:function(e){
+	selectLevel:function(e) {
 
 		this.setState({level: e.target.value});
 	},
-	setOwner:function(){
+	setOwner:function() {
 		var newParticipants = [];
  		newParticipants.push(this.props.user);
 		this.setState({
@@ -91,8 +91,7 @@ module.exports = React.createClass({
 		});
 	},
 
-	render:function(){
-		//console.log("numberOfPart", this.state);
+	render:function() {
 		return (
 			<div id="addActivity" className="col-md-4">
 				<form className="form" onSubmit={this.addActivity} ref="formRef">
