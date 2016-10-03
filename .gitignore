@@ -1,0 +1,10 @@
+#Folders
+node_modules/
+TraininBuddies/app/dist/
+
+#Files
+TrainingBuddies/config/auth.js
+
+#Junk
+.DS_Store
+TrainingBuddies/.DS_Store
